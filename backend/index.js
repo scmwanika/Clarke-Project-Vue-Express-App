@@ -61,14 +61,12 @@ const guestRouter = require('./controllers/guestRoutes');
 const reviewRouter = require('./controllers/reviewRoutes');
 const activityRouter = require('./controllers/activityRoutes');
 const accommodationRouter = require('./controllers/accommodationRoutes');
-const trainingRouter = require('./controllers/trainingRoutes');
 
 app.use(employeeRouter);
 app.use(guestRouter);
 app.use(reviewRouter);
 app.use(activityRouter);
 app.use(accommodationRouter);
-app.use(trainingRouter);
 
 // SERVER LISTENING TO REQUESTS
 app.listen(3000, () => {

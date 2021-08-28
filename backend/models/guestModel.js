@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const visitorSchema = new Schema({
+const guestSchema = new Schema({
   name: {
     type: String,
   },
