@@ -17,7 +17,7 @@ const routes = [
     path: '/admin',
     name: 'AdminPanel',
     component: () => import('../views/AdminPanel.vue'),
-    /**
+    /*
     meta: {
       requiresAuth: true,
     },
@@ -29,23 +29,18 @@ const routes = [
   },
   {
     path: '/',
-    name: 'AboutPage',
-    component: () => import('../views/AboutPage.vue'),
+    name: 'AboutUs',
+    component: () => import('../views/AboutUs.vue'),
   },
   {
-    path: '/visit',
-    name: 'VisitPage',
-    component: () => import('../views/VisitPage.vue'),
+    path: '/our-activities',
+    name: 'OurActivities',
+    component: () => import('../views/OurActivities.vue'),
   },
   {
-    path: '/coffee',
-    name: 'CoffeePage',
-    component: () => import('../views/CoffeePage.vue'),
-  },
-  {
-    path: '/testimonial',
-    name: 'TestimonialPage',
-    component: () => import('../views/TestimonialPage.vue'),
+    path: '/visit-us',
+    name: 'VisitUs',
+    component: () => import('../views/VisitUs.vue'),
   },
   {
     path: '/view-profile/:id',

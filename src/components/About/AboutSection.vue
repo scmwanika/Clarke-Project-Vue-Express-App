@@ -1,89 +1,80 @@
 <template>
   <div>
-    <h4>Investment</h4>
+    <div>
+      <h3>Investment</h3>
+    </div>
     <div class="flex-container">
       <div class="flex-item-left">
-        <br />
-        <p>
-          Clarke Farm is a 1,500 acre farm located in Katambale, Kyarusozi
-          Kyenjojo district in Uganda. Approximately half the farm is planted in
-          Robusta coffee. Other crops include Eucalyptus, Macadamia, Irish
-          potatoes, Maize, Mangoes and Oranges.
-        </p>
-        <br />
-        <p>
-          We have recently invested in <span class="about-span">TOURISM </span>
-          encouraged by the location and hilly topography of the farm which
-          provides amazing views. The farm has several natural waterways and
-          lies adjacent to a natural forest with rivers, monkeys and birds.
-          There are also projects for conservation and educational purposes such
-          as planting bamboo, and reforestation. An outgrower program is
-          underway with the goal of training in production of Robusta coffee for
-          2,000 smallholders, with Clarke farm providing an end market.
-        </p>
+        <h6>
+          <p>
+            Clarke Farm is a 1,500 acre farm located in Katambale, Kyarusozi
+            Kyenjojo district in Uganda. Approximately half the farm is planted
+            in Robusta coffee. Other crops include Eucalyptus, Macadamia, Irish
+            potatoes, Maize, Mangoes and Oranges.
+          </p>
+          <br /><br />
+          <p>
+            We have recently invested in <a href="/visit-us">TOURISM</a>
+            encouraged by the location and hilly topography of the farm which
+            provides amazing views. The farm has several natural waterways and
+            lies adjacent to a natural forest with rivers, monkeys and birds.
+            There are also projects for conservation and educational purposes
+            such as planting bamboo, and reforestation. An outgrower program is
+            underway with the goal of training in production of Robusta coffee
+            for 2,000 smallholders, with Clarke farm providing an end market.
+          </p>
+        </h6>
+      </div>
+      <div class="flex-item-middle">
+        <img src="../../../backend/uploads/river-walk.jpg" alt="river walk" width="100%" />
       </div>
       <div class="flex-item-right">
-        <b-container fluid class="p-4 bg-light">
-          <b-row>
-            <b-col>
-              <b-img
-                thumbnail
-                fluid
-                :src="require('../../../backend/uploads/River walk.jpg')"
-                alt="river walk"
-              ></b-img>
-            </b-col>
-            <b-col>
-              <b-img
-                thumbnail
-                fluid
-                :src="require('../../../backend/uploads/Forest walk.jpg')"
-                alt="forest walk"
-              ></b-img>
-            </b-col>
-          </b-row>
-        </b-container>
+        <img src="../../../backend/uploads/forest-walk.jpg" alt="forest walk" width="100%" />
+      </div>
+    </div>
+    <br />
+    <!-- FOUNDER -->
+    <div class="founder">
+      <div class="founder-left">
+        <h3>Founder's Journey</h3>
+        <br />
+        <figure>
+          <iframe
+            class="embed-responsive-item img-fluid"
+            src="https://www.youtube.com/embed/NC3kg2Q3fqo"
+            allowfullscreen
+          >
+          </iframe>
+          <figcaption>
+            Dr. Ian Clarke shares his farm's Vision and Values.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="founder-right">
+        <p>
+          Dr. Ian Clarke came to Uganda 33 years ago with his wife Robbie and
+          their three children, Sean, Michael and Lauren.
+        </p>
+        <p>
+          Since then he has been on a journey of investing in people and
+          communities in Uganda, first in Luweero shortly after the civil war
+          (1982 – 1986) where he founded a church hospital, Kiwoko Hospital,
+          which still stands to this day providing community and curative
+          services at very low cost. It has one of the best neonatal intensive
+          care units in Uganda.
+        </p>
+        <p>
+          Later Ian and Robbie moved to Kampala where he set up International
+          Hospital and International Medical Centres. Subsequently he founded
+          Clarke International University, while his son Sean founded Clarke
+          Junior School. These projects were for development in the health and
+          education sector. More recently he invested in agriculture in Clarke
+          Farm. The agricultural sector in Uganda supports 80% of the
+          population, so if one can bring improvements in this sector it has a
+          significant effect on household incomes of a large segment of the
+          population.
+        </p>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-* {
-  box-sizing: border-box;
-}
-
-p {
-  font-size: 11pt;
-  text-align: justify;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  font-size: 30px;
-  text-align: center;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.flex-item-left {
-  flex: 30%;
-  font-size: 12pt;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: grey;
-  background-color: #f5f5f5;
-}
-
-.flex-item-right {
-  flex: 70%;
-}
-
-/* Responsive layout - makes a one column-layout instead of two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
-}
-</style>

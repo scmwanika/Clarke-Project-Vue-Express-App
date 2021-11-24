@@ -5,33 +5,140 @@
 </template>
 
 <style>
-#app {
-  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
+* {
+  box-sizing: border-box;
 }
 
-h4 {
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+}
+
+.content-left {
+  flex: 39%;
+}
+
+.content-middle {
+  flex: 45%;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.hero {
+  color: grey;
+}
+
+.content-right {
+  flex: 16%;
+}
+
+.founder {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+}
+
+.founder-left {
+  flex: 33.33%;
+}
+
+.founder-right {
+  flex: 66.66%;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+p {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  font-size: 16pt;
+  text-align: justify;
+}
+
+h2 {
+  color: #068d68;
+  text-align: center;
+}
+
+h3 {
   color: white;
   margin-left: 50%;
+  font-size: 18pt;
   text-align: center;
   background-color: #068d68;
 }
 
-h1,
-h3,
-h5,
-h6,
-p {
+h4 {
+  color: #068d68;
+}
+
+h5 {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  font-size: 16pt;
+  text-align: justify;
+}
+
+span {
+  font-size: 24pt;
+  color: #068d68;
+}
+
+.nav-header {
+  margin-left: 2.5%;
+}
+
+.nav-footer {
+  color: white;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
   text-align: center;
 }
 
-.header {
+.flex-item-left,
+.flex-item-middle,
+.flex-item-right {
+  /*padding: 10px;*/
+  flex: 33.33%;
+}
+
+/* Responsive layout */
+@media (max-width: 800px) {
+  .content,
+  .founder,
+  .flex-container {
+      flex-direction: column;
+  }
+}
+
+figure {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+iframe {
   width: 100%;
-  position: fixed;
-  top: 0px;
+  height: auto;
+  border: none;
+}
+
+figcaption {
+  text-align: center;
+}
+
+#app-footer {
+  background-color: #068d68;
 }
 
 .footer {
@@ -41,12 +148,22 @@ p {
   text-align: left;
 }
 
-.footer-item-left,
+.footer-item-left {
+  background-color: white;
+  text-align: center;
+  flex: 33.33%;
+}
+
 .footer-item-middle,
 .footer-item-right {
-  padding-left: 50px;
-  flex: 33.33%;
+  background-color: #068d68;
   color: white;
+  text-align: center;
+  flex: 33.33%;
+}
+
+.copyright {
+  text-align: center;
 }
 
 /* Responsive layout - makes a one column-layout instead of three-column layout */

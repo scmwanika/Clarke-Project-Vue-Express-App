@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>We Offer</h4>
+    <br>
     <md-tabs class="md-transparent" md-alignment="centered">
       <md-tab id="tab-activities" md-label="Activities"
         ><PopularActivities

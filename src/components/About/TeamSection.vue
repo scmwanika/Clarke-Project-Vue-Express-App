@@ -1,7 +1,7 @@
 <template>
   <!-- Team -->
   <div class="team-section">
-    <h4>Our Team</h4>
+    <br><br>
     <div class="card-data">
       <div
         v-for="employee in employeeList"
@@ -36,7 +36,7 @@
     <span onClick="this.style.visibility= 'hidden';"
       ><p>
         <b-button v-on:click="getemployee()" variant="info">
-          <span style="text-transform: none">Show Team</span>
+          <span style="text-transform: none">Our Team</span>
         </b-button>
         <br /><br />
       </p>

@@ -11,7 +11,6 @@
       air drying to achieve a moisture content of about 10.5%.
     </p>
     <div class="flex-container">
-      <div class="flex-item-left"><ProcessingGuide /></div>
       <div class="flex-item-right"><CoffeeProcessing /></div>
     </div>
     <FooterSection />
@@ -22,7 +21,6 @@
 // @ is an alias to /src
 import HeaderSection from '@/components/HeaderSection.vue';
 import CoffeeProcessing from '@/components/BuyCoffee/CoffeeProcessing.vue';
-import ProcessingGuide from '@/components/BuyCoffee/ProcessingGuide.vue';
 import FooterSection from '@/components/FooterSection.vue';
 
 export default {
@@ -30,7 +28,6 @@ export default {
   components: {
     HeaderSection,
     CoffeeProcessing,
-    ProcessingGuide,
     FooterSection,
   },
 };
