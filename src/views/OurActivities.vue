@@ -1,9 +1,7 @@
 <template>
   <div>
     <HeaderSection />
-    <div class="flex-container">
-      <div class="flex-item-right"><CoffeeProduction /></div>
-    </div>
+    <CoffeeProduction />
     <FooterSection />
   </div>
 </template>

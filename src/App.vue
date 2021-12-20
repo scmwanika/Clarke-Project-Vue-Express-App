@@ -101,10 +101,11 @@ h5 {
   text-align: center;
 }
 
-.flex-item-left,
-.flex-item-right {
+.about-investment-left,
+.about-investment-middle,
+.about-investment-right {
   /*padding: 10px;*/
-  flex: 50%;
+  flex: 33.33%;
 }
 
 figure {

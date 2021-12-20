@@ -4,7 +4,7 @@
       <h3>Investment</h3>
     </div>
     <div class="flex-container">
-      <div class="flex-item-left">
+      <div class="about-investment-left">
         <h6>
           <p>
             Clarke Farm is a 1,500 acre farm located in Katambale, Kyarusozi
@@ -25,10 +25,10 @@
           </p>
         </h6>
       </div>
-      <div class="flex-item-middle">
+      <div class="about-investment-middle">
         <img src="../../../backend/uploads/river-walk.jpg" alt="river walk" width="100%" />
       </div>
-      <div class="flex-item-right">
+      <div class="about-investment-right">
         <img src="../../../backend/uploads/forest-walk.jpg" alt="forest walk" width="100%" />
       </div>
     </div>
@@ -58,7 +58,7 @@
         <p>
           Since then he has been on a journey of investing in people and
           communities in Uganda, first in Luweero shortly after the civil war
-          (1982 – 1986) where he founded a church hospital, Kiwoko Hospital,
+          (1982 to 1986) where he founded a church hospital, Kiwoko Hospital,
           which still stands to this day providing community and curative
           services at very low cost. It has one of the best neonatal intensive
           care units in Uganda.

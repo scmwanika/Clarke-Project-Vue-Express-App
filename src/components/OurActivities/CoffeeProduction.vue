@@ -3,16 +3,16 @@
     <div>
       <!-- Coffee Process -->
       <h3>Coffee Process/Benefits</h3>
-      <span>
+      <p>
         Our coffee is processed using a method known as wet processing. This
         removes the coffee's fruity material and leaves the coffee cherry
         moist.<br />
         It is passed through a pulping machine, fermented and dried using forced
         air drying to achieve a moisture content of about 10.5%.
-      </span>
+      </p>
     </div>
     <div class="flex-container">
-      <div class="flex-item-left">
+      <div class="coffee-process-left">
         <!-- Coffee Process -->
         <carousel-3d>
           <slide class="slide" :index="0">
@@ -21,7 +21,7 @@
             <h4>1-Mother Garden</h4>
             <p>
               We have all 7 lines of coffee wilt disease resistant varieties and
-              the traditional clones A-F.
+              the traditional clones.
             </p>
           </slide>
           <slide class="slide" :index="2">
@@ -30,7 +30,7 @@
             <h4>2-Cherry Picking</h4>
             <p>
               We have all 7 lines of coffee wilt disease resistant varieties and
-              the traditional clones A-F.
+              the traditional clones.
             </p>
           </slide>
           <slide class="slide" :index="1">
@@ -39,13 +39,13 @@
             <h4>3-Wet Processing</h4>
             <p>
               We have all 7 lines of coffee wilt disease resistant varieties and
-              the traditional clones A-F.
+              the traditional clones.
             </p>
           </slide>
         </carousel-3d>
       </div>
 
-      <div class="flex-item-right">
+      <div class="coffee-benefits-right">
         <!-- Process Benefits -->
         <carousel-3d>
           <slide class="slide" :index="0">
@@ -79,10 +79,7 @@
     <!--Our Capacity-->
     <h3>Our Capacity</h3>
     <div class="capacity-section">
-      <span
-        >These statistics show our current production and growth
-        potential.</span
-      >
+      <p>These statistics show our current production and growth potential.</p>
       <div>
         <div id="stat-container">
           <div class="stat">
@@ -166,15 +163,16 @@ h4 {
 }
 
 p {
-  font-size: 12pt;
+  font-size: 13pt;
   text-align: center;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-span {
-  color: black;
-  font-size: 14pt;
+.coffee-process-left,
+.coffee-benefits-right {
+  /*padding: 10px;*/
+  flex: 50%;
 }
 
 /* Capacity styles */
