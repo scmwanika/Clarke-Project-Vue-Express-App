@@ -1,10 +1,10 @@
 <template>
   <div>
     <HeaderSection />
-    <h4>Admin Panel</h4>
+    <h3>Admin Panel</h3>
     <div class="logout">
       <b-button v-on:click="logout" variant="danger">
-        <span style="text-transform: none">Logout</span>
+        Logout
       </b-button>
     </div>
     <md-tabs class="md-transparent" md-alignment="centered">
@@ -26,8 +26,8 @@
 <script>
 import HeaderSection from '@/components/HeaderSection.vue';
 import UploadEmployee from '@/components/AdminPanel/UploadEmployee.vue';
-import GuestList from '@/components/AdminPanel/GuestList.vue';
-import ReviewList from '@/components/Testimonial/ReviewList.vue';
+import GuestList from '@/components/GuestList.vue';
+import ReviewList from '@/components/ReviewList.vue';
 import UploadActivity from '@/components/AdminPanel/UploadActivity.vue';
 import UploadAccommodation from '@/components/AdminPanel/UploadAccommodation.vue';
 
@@ -52,15 +52,6 @@ export default {
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-em {
-  color: red;
-  font-size: 10pt;
-}
-
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -75,13 +66,6 @@ em {
 .flex-component-right {
   flex: 25%;
   margin-left: 0.5%;
-}
-
-/* Responsive layout - makes a one column-layout instead of two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
 }
 
 .table {
@@ -102,7 +86,13 @@ input[type="file"],
 input[type="text"],
 textarea {
   width: 100%;
+  font-size: 14pt;
 }
+
+textarea {
+  padding-left: 10px;
+}
+
 /*
 .btn-add {
   width: 40px;

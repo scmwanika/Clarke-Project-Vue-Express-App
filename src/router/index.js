@@ -43,6 +43,21 @@ const routes = [
     component: () => import('../views/VisitUs.vue'),
   },
   {
+    path: '/bookings/create',
+    name: 'Bookings',
+    component: () => import('../components/GuestForm.vue'),
+  },
+  {
+    path: '/reviews/create',
+    name: 'CreateReview',
+    component: () => import('../components/ReviewForm.vue'),
+  },
+  {
+    path: '/reviews',
+    name: 'ListReviews',
+    component: () => import('../components/ReviewList.vue'),
+  },
+  {
     path: '/view-profile/:id',
     name: 'ViewEmployeeProfile',
     component: () => import('../views/ViewEmployeeProfile.vue'),

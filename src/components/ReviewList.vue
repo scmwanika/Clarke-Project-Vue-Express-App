@@ -1,21 +1,24 @@
 <template>
   <div>
     <h5>Guests Comment</h5>
-    <table class="table table-info">
-      <!-- Head -->
+    <table class="table table-info" v-for="review in reviewList" :key="review._id">
       <tr>
-        <th>Name</th>
-        <th>Rating</th>
-        <th>Comment</th>
-        <th>Review Date</th>
+        <td>Date:</td>
+        <th>{{ review.reviewDate }}</th>
       </tr>
-      <!-- Body -->
-      <tr v-for="review in reviewList" :key="review._id">
-        <td>{{ review.name }}</td>
-        <td>{{ review.rating }}</td>
-        <td>{{ review.comment }}</td>
-        <td>{{ review.reviewDate }}</td>
+      <tr>
+        <td>Guest:</td>
+        <th>{{ review.name }}</th>
       </tr>
+      <tr>
+        <td>Rated:</td>
+        <th>{{ review.rating }}</th>
+      </tr>
+      <tr>
+        <td>Commented:</td>
+        <th>{{ review.comment }}</th>
+      </tr>
+      <br>
     </table>
     <em>{{ message }}</em>
   </div>
@@ -23,7 +26,7 @@
 
 <script>
 import axios from 'axios';
-import api from '../../api';
+import api from '../api';
 
 export default {
   props: {
@@ -49,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-h5 {
-  color: #068d68;
+td {
+  width: 100px;
 }
 </style>

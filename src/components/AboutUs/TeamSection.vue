@@ -36,7 +36,7 @@
     <span onClick="this.style.visibility= 'hidden';"
       ><p>
         <b-button v-on:click="getemployee()" variant="info">
-          <span style="text-transform: none">Our Team</span>
+          OUR TEAM
         </b-button>
         <br /><br />
       </p>

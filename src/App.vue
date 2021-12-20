@@ -86,17 +86,12 @@ h5 {
   text-align: justify;
 }
 
-span {
-  font-size: 24pt;
-  color: #068d68;
-}
-
 .nav-header {
   margin-left: 2.5%;
 }
 
-.nav-footer {
-  color: white;
+.btn-outline-info {
+  margin-left: 5px;
 }
 
 .flex-container {
@@ -107,19 +102,9 @@ span {
 }
 
 .flex-item-left,
-.flex-item-middle,
 .flex-item-right {
   /*padding: 10px;*/
-  flex: 33.33%;
-}
-
-/* Responsive layout */
-@media (max-width: 800px) {
-  .content,
-  .founder,
-  .flex-container {
-      flex-direction: column;
-  }
+  flex: 50%;
 }
 
 figure {
@@ -166,8 +151,11 @@ figcaption {
   text-align: center;
 }
 
-/* Responsive layout - makes a one column-layout instead of three-column layout */
+/* Responsive layout */
 @media (max-width: 800px) {
+  .content,
+  .founder,
+  .flex-container,
   .footer {
     flex-direction: column;
   }

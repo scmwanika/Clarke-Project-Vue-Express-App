@@ -3,25 +3,20 @@
   <div class="activities-section">
     <div class="headline">
       <div>
-        <div class="headline1">
-          <span style="font-size: 24pt">90% </span> Of Our Guests<br />
-        </div>
-        <div class="headline2">
-          <span>Enjoyed These Activities The Most.</span>
-        </div>
+        <p style="font-size: 40pt">90% of our guests</p>
+        <p>Enjoyed These Activities The Most.</p>
       </div>
     </div>
     <div class="activity">
-      <div
-        v-for="activity in activityList"
-        :key="activity.id"
-      >
+      <div v-for="activity in activityList" :key="activity.id">
         <div>
           <img
-            :src="require('../../../backend/uploads/' + activity.fileName + '.jpg')"
+            :src="
+              require('../../../backend/uploads/' + activity.fileName + '.jpg')
+            "
             alt="card image"
           />
-          <p>{{ activity.fileName }}</p>
+          <p>{{ activity.description }}</p>
         </div>
       </div>
     </div>
@@ -87,13 +82,7 @@ img {
   font-family: "Times New Roman", Times, serif;
 }
 
-.headline1 {
-  margin-left: 23px;
-  text-align: left;
-}
-
-.headline2 {
-  margin-right: 23px;
-  text-align: right;
+p {
+  text-align: center;
 }
 </style>

@@ -5,9 +5,8 @@
     <div class="flex-component-right">
       <form @submit.prevent="onSubmit" enctype="multipart/form-data">
         <h6>Upload File</h6>
-        <br />
         <input type="file" ref="file" @change="onSelect" />
-        <br /><br />
+        <br />
         <div class="form-group">
           <input
             type="text"
@@ -28,13 +27,13 @@
         </div>
 
         <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
+          <textarea
+            rows="3"
             placeholder="description"
             v-model="accommodation.description"
             required
-          />
+          >
+          </textarea>
         </div>
 
         <div class="form-group">
@@ -47,7 +46,7 @@
 </template>
 
 <script>
-import AccommodationList from '@/components/Visit/AccommodationList.vue';
+import AccommodationList from '@/components/VisitUs/AccommodationList.vue';
 import axios from 'axios';
 import api from '../../api';
 

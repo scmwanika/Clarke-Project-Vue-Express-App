@@ -3,6 +3,13 @@
     <div>
       <!--Coffee Process-->
       <h3>Coffee Process</h3>
+      <p>
+        Our coffee is processed using a method known as wet processing. This
+        removes the coffee's fruity material and leaves the coffee cherry
+        moist.<br />
+        It is passed through a pulping machine, fermented and dried using forced
+        air drying to achieve a moisture content of about 10.5%.
+      </p>
     </div>
     <div class="flex-container">
       <div class="flex-item-left">
@@ -45,7 +52,7 @@
         </p>
       </div>
     </div>
-    <br /><br />
+    <br />
     <!--Process Benefits-->
     <h3>Process Benefits</h3>
     <div class="flex-container">
@@ -71,7 +78,7 @@
         </p>
       </div>
     </div>
-    <br /><br />
+    <br />
     <!--Our Capacity-->
     <h3>Our Capacity</h3>
     <div class="capacity-section">
@@ -101,7 +108,7 @@
         </div>
       </div>
     </div>
-    <br /><br /><br />
+    <br />
     <!--Our Partners-->
     <h3>Our Partners</h3>
     <br />
@@ -143,8 +150,7 @@
           />
         </div>
       </div>
-    </div>
-    <br />
+    </div><br>
   </div>
 </template>
 

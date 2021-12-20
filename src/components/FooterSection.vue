@@ -9,8 +9,8 @@
       <div class="footer-item-middle">
         <h6>LINKS</h6>
         <a class="nav-footer" href="/">About Us</a><br />
-        <a class="nav-footer" href="/our-activities">Farm Activities</a><br />
-        <a class="nav-footer" href="/visit-us">Tourism</a><br /><br />
+        <a class="nav-footer" href="/our-activities">Our Activities</a><br />
+        <a class="nav-footer" href="/visit-us">Visit Us</a><br /><br />
       </div>
       <div class="footer-item-right">
         <h6>INQUIRES</h6>
@@ -27,3 +27,9 @@
     <p class="copyright">© 2021 Clarke Group Limited</p>
   </div>
 </template>
+
+<style scoped>
+a {
+  color: white;
+}
+</style>

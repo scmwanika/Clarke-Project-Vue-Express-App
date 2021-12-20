@@ -1,32 +1,43 @@
 <template>
   <div>
     <head>
-      <title>clarke-farm</title>
+      <title>Clarke Farm</title>
     </head>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-md bg-light navbar-dark">
-      <a class="navbar-brand">
-        <span style="font-family: Monotype Corsiva"> Clarke Farm </span>
-      </a>
-      <a class="nav-header" href="/">About Us</a>
-      <a class="nav-header" href="/our-activities">Our Activities</a>
-      <a class="nav-header" href="/visit-us">Visit Us</a>
-      <button
-        class="navbar-toggler"
-        style="background-color: #068d68"
-        data-toggle="collapse"
-        data-target="#collapsibleNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <!--Telephone Contact-->
-        <div class="navbar-nav ml-auto">
-          <img src="../assets/phone-24.png" alt="phone icon" />
-          +256 (0)392 201 400
-        </div>
-      </div>
-    </nav>
+    <div>
+      <b-navbar toggleable="lg" type="dark" variant="light">
+        <b-navbar-brand
+          ><p style="font-family: Monotype Corsiva">Clarke Farm</p>
+          <div>
+            <img src="../assets/phone-24.png" alt="phone icon" />
+            <span class="contact">+256 (0)392 201 400</span>
+          </div></b-navbar-brand
+        >
+
+        <b-navbar-toggle
+          target="nav-collapse"
+          style="background-color: #068d68"
+        ></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <!-- Right aligned items -->
+          <b-navbar-nav class="ml-auto">
+            <b-navbar-nav>
+              <!-- Routes -->
+              <b-nav-item href="/"><div class="link">About Us</div></b-nav-item>
+              <b-nav-item href="/our-activities"
+                ><div class="link">Our Activities</div></b-nav-item
+              >
+              <b-nav-item href="/visit-us"
+                ><div class="link">Visit Us</div></b-nav-item
+              >
+            </b-navbar-nav>
+            <!-- Logout -->
+            <b-button v-on:click="logout" variant="danger">Logout</b-button>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </div>
 
     <body>
       <div id="app-body">
@@ -54,8 +65,12 @@
               <br />
               <!--Links-->
               <div>
-                <a class="btn btn-info" href="coffee-production">Book A Trip</a>
-                <a class="btn btn-info" href="coffee-production">Buy Coffee</a>
+                <a class="btn btn-outline-info" href="/bookings/create"
+                  >Book A Trip</a
+                >
+                <a class="btn btn-outline-info" href="/reviews/create"
+                  >Buy Coffee</a
+                >
               </div>
             </div>
           </div>
@@ -70,3 +85,16 @@
     </body>
   </div>
 </template>
+
+<style scoped>
+p {
+  font-size: 24pt;
+  color: #068d68;
+  text-align: center;
+}
+
+.contact,
+.link {
+  color: green;
+}
+</style>

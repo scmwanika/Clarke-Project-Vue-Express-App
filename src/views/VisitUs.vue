@@ -9,7 +9,7 @@
 <script>
 // @ is an alias to /src
 import HeaderSection from '@/components/HeaderSection.vue';
-import OurOffers from '@/components/Visit/OffersCard.vue';
+import OurOffers from '@/components/VisitUs/OffersCard.vue';
 import FooterSection from '@/components/FooterSection.vue';
 
 export default {

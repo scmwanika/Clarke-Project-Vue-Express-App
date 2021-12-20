@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import AccommodationSection from '@/components/Visit/AccommodationSection.vue';
+import AccommodationSection from '@/components/VisitUs/AccommodationSection.vue';
 import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../api';

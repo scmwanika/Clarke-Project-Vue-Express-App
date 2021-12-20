@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import PopularActivities from '@/components/Visit/PopularActivities.vue';
-import AccommodationSection from '@/components/Visit/AccommodationSection.vue';
-import PackagesCard from '@/components/Visit/PackagesCard.vue';
+import PopularActivities from '@/components/VisitUs/PopularActivities.vue';
+import AccommodationSection from '@/components/VisitUs/AccommodationSection.vue';
+import PackagesCard from '@/components/VisitUs/PackagesCard.vue';
 
 export default {
   components: {

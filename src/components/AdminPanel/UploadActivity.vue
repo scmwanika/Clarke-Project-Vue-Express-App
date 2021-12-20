@@ -5,9 +5,8 @@
     <div class="flex-component-right">
       <form @submit.prevent="onSubmit" enctype="multipart/form-data">
         <h6>Upload File</h6>
-        <br />
         <input type="file" ref="file" @change="onSelect" />
-        <br /><br />
+        <br />
         <div class="form-group">
           <input
             type="text"
@@ -37,7 +36,7 @@
 </template>
 
 <script>
-import ActivityList from '@/components/Visit/ActivityList.vue';
+import ActivityList from '@/components/VisitUs/ActivityList.vue';
 import axios from 'axios';
 import api from '../../api';
 

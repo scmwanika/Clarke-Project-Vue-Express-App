@@ -10,7 +10,7 @@
           />
           <div class="card-body">
             <h6>{{ accommodation.fileName }}</h6>
-            <h3>{{ accommodation.fee }}</h3>
+            <h1>{{ accommodation.fee }}</h1>
             <h6>{{ accommodation.description }}</h6>
           </div>
         </div>
