@@ -32,8 +32,6 @@
                 ><div class="link">Visit Us</div></b-nav-item
               >
             </b-navbar-nav>
-            <!-- Logout -->
-            <b-button v-on:click="logout" variant="danger">Logout</b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -91,6 +89,10 @@ p {
   font-size: 24pt;
   color: #068d68;
   text-align: center;
+}
+
+span {
+  font-size: 12pt;
 }
 
 .contact,

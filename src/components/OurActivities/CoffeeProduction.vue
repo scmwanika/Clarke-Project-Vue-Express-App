@@ -1,16 +1,13 @@
 <template>
   <div>
-    <div>
-      <!-- Coffee Process -->
-      <h3>Coffee Process/Benefits</h3>
-      <p>
-        Our coffee is processed using a method known as wet processing. This
-        removes the coffee's fruity material and leaves the coffee cherry
-        moist.<br />
-        It is passed through a pulping machine, fermented and dried using forced
-        air drying to achieve a moisture content of about 10.5%.
-      </p>
-    </div>
+    <!-- Coffee Process -->
+    <p>
+      Our coffee is processed using a method known as wet processing. This
+      removes the coffee's fruity material and leaves the coffee cherry
+      moist.<br />
+      It is passed through a pulping machine, fermented and dried using forced
+      air drying to achieve a moisture content of about 10.5%.
+    </p>
     <div class="flex-container">
       <div class="coffee-process-left">
         <!-- Coffee Process -->
