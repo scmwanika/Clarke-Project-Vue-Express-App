@@ -105,13 +105,12 @@ export default {
     ...mapMutations(['INSERT_GUEST']),
     ...mapActions(['insertGuest']),
     async addGuest() {
-      const endpoint = '/guests/add';
       try {
-        await axios.post(api + endpoint, this.guest);
+        await axios.post(`${api}/guests/add`, this.guest);
         this.guest = {};
-        this.message = "We've received your request. Thankyou.";
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to submit your request; Please, try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- FILTER GUESTS (search by name or checkin) -->
+    <!-- FILTER GUESTS (filter by name or checkin) -->
     <div class="search-wrapper">
       <input
         type="text"
         v-model="search"
-        placeholder="Search Guest By Name or Checkin"
+        placeholder="Filter Guest By Name or Checkin"
       />
       <br /><br />
       <p v-if="guests.length === 0">No guest found in your search</p>
@@ -70,7 +70,7 @@ export default {
   computed: {
     ...mapState(['guests']),
     ...mapGetters(['guestList']),
-    // FILTER GUESTS (search by name or checkin)
+    // FILTER GUESTS (filter by name or checkin)
     guests() {
       // eslint-disable-next-line max-len
       return this.guestList.filter(

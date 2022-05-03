@@ -7,12 +7,13 @@
     <div>
       <b-navbar toggleable="lg" type="dark" variant="light">
         <b-navbar-brand
-          ><p style="font-family: Monotype Corsiva">Clarke Farm</p>
-          <div>
-            <img src="../assets/phone-24.png" alt="phone icon" />
-            <span class="contact">+256 (0)392 201 400</span>
-          </div></b-navbar-brand
-        >
+          ><div class="logo" style="font-family: Monotype Corsiva">
+            Clarke Farm<br /><img
+              src="../assets/phone-24.png"
+              alt="phone icon"
+            /><span class="contact">+256 (0)392 201 400</span>
+          </div>
+        </b-navbar-brand>
 
         <b-navbar-toggle
           target="nav-collapse"
@@ -85,7 +86,7 @@
 </template>
 
 <style scoped>
-p {
+.logo {
   font-size: 24pt;
   color: #068d68;
   text-align: center;

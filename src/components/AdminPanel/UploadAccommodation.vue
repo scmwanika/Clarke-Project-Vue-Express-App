@@ -3,7 +3,7 @@
     <div class="flex-component-left"><AccommodationList /></div>
 
     <div class="flex-component-right">
-      <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+      <form @submit.prevent="addAccommodation" enctype="multipart/form-data">
         <h6>Upload File</h6>
         <input type="file" ref="file" @change="onSelect" />
         <br />
@@ -47,51 +47,43 @@
 
 <script>
 import AccommodationList from '@/components/VisitUs/AccommodationList.vue';
+import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../../api';
 
 export default {
+  components: {
+    AccommodationList,
+  },
   name: 'UploadAccommodations',
   props: {
     message: String,
   },
-  components: {
-    AccommodationList,
-  },
   data() {
     return {
-      accommodation: {
-        fileName: '',
-        rate: '',
-        message: '',
-      },
+      accommodation: {},
     };
   },
   methods: {
+    //
     onSelect() {
       const file = this.$refs.file.files[0];
       this.file = file;
     },
-    async onSubmit() {
+    ...mapMutations(['INSERT_ACCOMMODATION']),
+    ...mapActions(['insertAccommodation']),
+    async addAccommodation() {
       const formData = new FormData();
       formData.append('file', this.file);
-      // Endpoints
-      const endpoint1 = '/uploads';
-      const endpoint2 = '/accommodations/add';
       try {
         // UPLOAD FILE TO STORAGE DIRECTORY
-        await axios.post(api + endpoint1, formData);
-
+        await axios.post(`${api}/uploads`, formData);
         // UPLOAD DATA TO DATABASE
-        await axios.post(api + endpoint2, this.accommodation);
-        this.$router.push('/admin');
-        this.accommodation = {
-          fileName: '',
-          role: '',
-        };
-        this.message = 'File and data uploaded successfully.';
+        await axios.post(`${api}/accommodations/add`, this.accommodation);
+        this.accommodation = {};
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to upload! Please, try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

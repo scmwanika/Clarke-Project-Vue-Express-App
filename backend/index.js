@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const { DATABASE, PORT } = process.env;
+
 const app = express();
 app.use(cors());
 
@@ -41,7 +43,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ESTABLISHING DATABASE CONNECTION
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(DATABASE, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -68,7 +70,7 @@ app.use(reviewRouter);
 app.use(activityRouter);
 app.use(accommodationRouter);
 
-// SERVER LISTENING TO REQUESTS
-app.listen(3000, () => {
-  console.log('listening on port 3000');
+// APP LISTEN TO REQUESTS
+app.listen(PORT, () => {
+  console.log(`App running at port ${PORT}`);
 });

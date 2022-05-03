@@ -3,7 +3,7 @@
     <div class="flex-component-left"><ActivityList /></div>
 
     <div class="flex-component-right">
-      <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+      <form @submit.prevent="addActivity" enctype="multipart/form-data">
         <h6>Upload File</h6>
         <input type="file" ref="file" @change="onSelect" />
         <br />
@@ -37,51 +37,43 @@
 
 <script>
 import ActivityList from '@/components/VisitUs/ActivityList.vue';
+import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../../api';
 
 export default {
+  components: {
+    ActivityList,
+  },
   name: 'UploadActivities',
   props: {
     message: String,
   },
-  components: {
-    ActivityList,
-  },
   data() {
     return {
-      activity: {
-        fileName: '',
-        description: '',
-        message: '',
-      },
+      activity: {},
     };
   },
   methods: {
+    //
     onSelect() {
       const file = this.$refs.file.files[0];
       this.file = file;
     },
-    async onSubmit() {
+    ...mapMutations(['INSERT_ACTIVITY']),
+    ...mapActions(['insertActivity']),
+    async addActivity() {
       const formData = new FormData();
       formData.append('file', this.file);
-      // Endpoints
-      const endpoint1 = '/uploads';
-      const endpoint2 = '/activities/add';
       try {
         // UPLOAD FILE TO STORAGE DIRECTORY
-        await axios.post(api + endpoint1, formData);
-
+        await axios.post(`${api}/uploads`, formData);
         // UPLOAD DATA TO DATABASE
-        await axios.post(api + endpoint2, this.activity);
-        this.$router.push('/admin');
-        this.activity = {
-          fileName: '',
-          description: '',
-        };
-        this.message = 'File and data uploaded successfully.';
+        await axios.post(`${api}/activities/add`, this.activity);
+        this.activity = {};
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to upload! Please, try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

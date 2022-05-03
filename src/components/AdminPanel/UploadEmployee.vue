@@ -3,7 +3,7 @@
     <div class="flex-component-left"><EmployeeList /></div>
 
     <div class="flex-component-right">
-      <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+      <form @submit.prevent="addEmployee" enctype="multipart/form-data">
         <h6>Upload File</h6>
         <input type="file" ref="file" @change="onSelect" />
         <br />
@@ -26,10 +26,12 @@
           />
         </div>
 
-        <div class="form-group">
-          <button class="btn btn-success btn-block btn-add">save</button>
-          <em>{{ message }}</em>
-        </div>
+        <input
+          type="submit"
+          class="btn btn-success btn-block"
+          @click="insertEmployee(employee)"
+        />
+        <em>{{ message }}</em>
       </form>
     </div>
   </div>
@@ -37,51 +39,43 @@
 
 <script>
 import EmployeeList from '@/components/AboutUs/EmployeeList.vue';
+import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../../api';
 
 export default {
+  components: {
+    EmployeeList,
+  },
   name: 'UploadEmployees',
   props: {
     message: String,
   },
-  components: {
-    EmployeeList,
-  },
   data() {
     return {
-      employee: {
-        fileName: '',
-        role: '',
-        message: '',
-      },
+      employee: {},
     };
   },
   methods: {
+    //
     onSelect() {
       const file = this.$refs.file.files[0];
       this.file = file;
     },
-    async onSubmit() {
+    ...mapMutations(['INSERT_EMPLOYEE']),
+    ...mapActions(['insertEmployee']),
+    async addEmployee() {
       const formData = new FormData();
       formData.append('file', this.file);
-      // Endpoints
-      const endpoint1 = '/uploads';
-      const endpoint2 = '/employees/add';
       try {
         // UPLOAD FILE TO STORAGE DIRECTORY
-        await axios.post(api + endpoint1, formData);
-
+        await axios.post(`${api}/uploads`, formData);
         // UPLOAD DATA TO DATABASE
-        await axios.post(api + endpoint2, this.employee);
-        this.$router.push('/admin');
-        this.employee = {
-          fileName: '',
-          role: '',
-        };
-        this.message = 'File and data uploaded successfully.';
+        await axios.post(`${api}/employees/add`, this.employee);
+        this.employee = {};
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to upload! Please, try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

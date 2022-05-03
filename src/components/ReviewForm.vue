@@ -1,7 +1,7 @@
 <template>
   <div>
     <h6 class="text-center">Farm visit reviews</h6>
-    <form @submit.prevent="handleSubmitForm">
+    <form @submit.prevent="addReview">
       <div class="form-group">
         <label>Name:</label>
         <input
@@ -43,47 +43,40 @@
         />
       </div>
       <br />
-      <div class="form-group">
-        <button class="btn btn-success btn-block">Submit</button>
-      </div>
+      <input
+        type="submit"
+        class="btn btn-success btn-block"
+        @click="insertGuest(guest)"
+      />
     </form>
     <em>{{ message }}</em>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
+import api from '../api';
 
-const api = 'http://localhost:3000';
 export default {
   props: {
     message: String,
   },
   data() {
     return {
-      visitor: {
-        name: '',
-        rating: '',
-        remark: '',
-        reviewDate: '',
-      },
+      review: {},
     };
   },
   methods: {
-    async handleSubmitForm() {
-      const endpoint = '/reviews/add';
+    ...mapMutations(['INSERT_REVIEW']),
+    ...mapActions(['insertReview']),
+    async addReview() {
       try {
-        await axios.post(api + endpoint, this.visitor);
-        // this.$router.push('/admin');
-        this.visitor = {
-          name: '',
-          rating: '',
-          remark: '',
-          reviewDate: '',
-        };
-        this.message = 'We have received your review with Thanks.';
+        await axios.post(`${api}/reviews/add`, this.review);
+        this.review = {};
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to submit! Please, try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },
