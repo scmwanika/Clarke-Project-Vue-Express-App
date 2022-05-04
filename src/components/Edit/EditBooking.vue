@@ -96,9 +96,7 @@ export default {
   },
   // edit-button onClick GETs this guest.
   created() {
-    const endpoint = `/guest/${this.$route.params.id}`;
-
-    axios.get(api + endpoint).then((res) => {
+    axios.get(`${api}/guest/${this.$route.params.id}`).then((res) => {
       this.guest = res.data;
     });
   },
@@ -106,14 +104,13 @@ export default {
   methods: {
     async handleUpdateForm() {
       // update-button onClick, POSTs this guest.
-      const endpoint = `/update-guest/${this.$route.params.id}`;
       try {
-        await axios.post(api + endpoint, this.guest).then(() => {
+        await axios.post(`${api}/update-guest/${this.$route.params.id}`, this.guest).then(() => {
           this.$router.push('/admin');
         });
-        this.message = 'Booking updated successfully.';
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to Update! Please try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

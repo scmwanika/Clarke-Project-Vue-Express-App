@@ -25,28 +25,23 @@
 </template>
 
 <script>
-import axios from 'axios';
-import api from '../api';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
     message: String,
   },
-  data() {
-    return {
-      reviewList: [],
-    };
+  computed: {
+    ...mapState(['reviews']),
+    ...mapGetters(['reviewList']),
   },
+  //
   created() {
-    const endpoint = '/reviews';
-    axios
-      .get(api + endpoint)
-      .then((res) => {
-        this.reviewList = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.listReviews();
+  },
+  // METHODS
+  methods: {
+    ...mapActions(['listReviews', 'removeReview']),
   },
 };
 </script>

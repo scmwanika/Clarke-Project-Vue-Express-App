@@ -57,9 +57,7 @@ export default {
   },
   // edit-button onClick, GETs this employee.
   created() {
-    const endpoint = `/employee/${this.$route.params.id}`;
-
-    axios.get(api + endpoint).then((res) => {
+    axios.get(`${api}/employee/${this.$route.params.id}`).then((res) => {
       this.employee = res.data;
     });
   },
@@ -67,14 +65,13 @@ export default {
   methods: {
     async handleUpdateForm() {
       // update-button onClick, POSTs this employee.
-      const endpoint = `/update-employee/${this.$route.params.id}`;
       try {
-        await axios.post(api + endpoint, this.employee).then(() => {
+        await axios.post(`${api}/update-employee/${this.$route.params.id}`, this.employee).then(() => {
           this.$router.push('/admin');
         });
-        this.message = 'Employee updated successfully.';
+        this.message = 'Sent Successfully';
       } catch {
-        this.message = 'Failed to Update! Please try again.';
+        this.message = 'Unsuccessful! Please, Try Again.';
       }
     },
   },

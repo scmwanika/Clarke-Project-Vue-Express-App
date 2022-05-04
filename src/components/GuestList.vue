@@ -42,7 +42,7 @@
                 <input type="button" class="btn btn-info" value="edit" />
               </router-link>
               <!-- DELETE LINK -->
-              <a href="" @click="removeGuest(guest._id)">
+              <a href="" @click.prevent="removeGuest(guest._id)">
                 <input type="submit" class="btn btn-danger" value="delete" />
               </a>
             </td>

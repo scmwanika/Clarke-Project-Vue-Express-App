@@ -30,7 +30,7 @@
             <input type="button" class="btn btn-info" value="edit" />
           </router-link>
           <!-- DELETE LINK -->
-          <a href="" @click.prevent="deleteEmployee(employee._id)">
+          <a href="" @click.prevent="removeEmployee(employee._id)">
             <input type="submit" class="btn btn-danger" value="delete" />
           </a>
         </td>
@@ -41,46 +41,23 @@
 </template>
 
 <script>
-import axios from 'axios';
-import api from '../../api';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
     message: String,
   },
-  data() {
-    return {
-      employeeList: [],
-    };
+  computed: {
+    ...mapState(['employees']),
+    ...mapGetters(['employeeList']),
   },
+  //
   created() {
-    const endpoint = '/employees';
-    axios
-      .get(api + endpoint)
-      .then((res) => {
-        this.employeeList = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.listEmployees();
   },
+  // METHODS
   methods: {
-    async deleteEmployee(id) {
-      const endpoint = `/delete-employee/${id}`;
-      try {
-        await axios.get(api + endpoint).then(() => {
-          // eslint-disable-next-line no-underscore-dangle
-          this.employeeList.splice(
-            // eslint-disable-next-line no-underscore-dangle
-            this.employeeList.findIndex((i) => i._id === id),
-            1,
-          );
-        });
-        this.message = 'Employee deleted successfully.';
-      } catch {
-        this.message = 'Failed to Delete! Please try again.';
-      }
-    },
+    ...mapActions(['listEmployees', 'removeEmployee']),
   },
 };
 </script>

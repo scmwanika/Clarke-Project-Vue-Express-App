@@ -30,7 +30,7 @@
             ><!-- EDIT ICON -->
             <img src="@/assets/edit-16.png" alt="edit-icon" />
           </router-link>
-          <a href="" @click.prevent="deleteAccommodation(accommodation._id)"
+          <a href="" @click.prevent="removeAccommodation(accommodation._id)"
             ><!-- DELETE ICON -->
             <img src="@/assets/delete-16.png" alt="delete-icon" />
           </a>
@@ -42,45 +42,23 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
-const api = 'http://localhost:3000';
 export default {
   props: {
     message: String,
   },
-  data() {
-    return {
-      accommodationList: [],
-    };
+  computed: {
+    ...mapState(['accommodations']),
+    ...mapGetters(['accommodationList']),
   },
+  //
   created() {
-    const endpoint = '/accommodations';
-    axios
-      .get(api + endpoint)
-      .then((res) => {
-        this.accommodationList = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.listAccommodations();
   },
+  // METHODS
   methods: {
-    async deleteAccommodation(id) {
-      const endpoint = `/delete-accommodation/${id}`;
-      try {
-        await axios.get(api + endpoint).then(() => {
-          // eslint-disable-next-line no-underscore-dangle
-          this.accommodationList.splice(
-            // eslint-disable-next-line no-underscore-dangle
-            this.accommodationList.findIndex((i) => i._id === id), 1,
-          );
-        });
-        this.message = 'Accommodation deleted successfully.';
-      } catch {
-        this.message = 'Failed to Delete! Please try again.';
-      }
-    },
+    ...mapActions(['listAccommodations', 'removeAccommodation']),
   },
 };
 </script>

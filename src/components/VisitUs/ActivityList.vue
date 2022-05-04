@@ -28,7 +28,7 @@
             ><!-- EDIT ICON -->
             <img src="@/assets/edit-16.png" alt="edit-icon" />
           </router-link>
-          <a href="" @click.prevent="deleteActivity(activity._id)"
+          <a href="" @click.prevent="removeActivity(activity._id)"
             ><!-- DELETE ICON -->
             <img src="@/assets/delete-16.png" alt="delete-icon" />
           </a>
@@ -40,45 +40,23 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
-const api = 'http://localhost:3000';
 export default {
   props: {
     message: String,
   },
-  data() {
-    return {
-      activityList: [],
-    };
+  computed: {
+    ...mapState(['activities']),
+    ...mapGetters(['activityList']),
   },
+  //
   created() {
-    const endpoint = '/activities';
-    axios
-      .get(api + endpoint)
-      .then((res) => {
-        this.activityList = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.listActivities();
   },
+  // METHODS
   methods: {
-    async deleteActivity(id) {
-      const endpoint = `/delete-activity/${id}`;
-      try {
-        await axios.get(api + endpoint).then(() => {
-          // eslint-disable-next-line no-underscore-dangle
-          this.activityList.splice(
-            // eslint-disable-next-line no-underscore-dangle
-            this.activityList.findIndex((i) => i._id === id), 1,
-          );
-        });
-        this.message = 'Activity deleted successfully.';
-      } catch {
-        this.message = 'Failed to Delete! Please try again.';
-      }
-    },
+    ...mapActions(['listActivities', 'removeActivity']),
   },
 };
 </script>
