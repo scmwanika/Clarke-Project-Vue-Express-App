@@ -10,31 +10,6 @@
         <form @submit.prevent="addGuest" @oninput="handleInput()">
           <div>
             <input
-              id="quantity"
-              type="text"
-              class="form-control form-control-sm mt-3"
-              placeholder="quantity"
-              v-model="guest.quantity"
-              required
-            />
-            <input
-              id="unit_cost"
-              type="text"
-              class="form-control form-control-sm mt-3"
-              placeholder="unit cost"
-              v-model="guest.unit_cost"
-              required
-            />
-            <input
-              id="total_cost"
-              type="text"
-              class="form-control form-control-sm mt-3"
-              placeholder="total cost"
-              v-model="guest.total_cost"
-              required
-            />
-
-            <input
               type="text"
               class="form-control form-control-sm mt-3"
               placeholder="Name"
@@ -123,7 +98,6 @@ export default {
   },
   data() {
     return {
-      total_cost: '',
       guest: {},
     };
   },
