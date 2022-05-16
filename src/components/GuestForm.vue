@@ -7,7 +7,7 @@
     <div class="flex-item-right">
       <div style="background-color: rgba(0, 0, 0, 0.05)">
         <h6>Booking Form</h6>
-        <form @submit.prevent="addGuest" @oninput="handleInput()">
+        <form @submit.prevent="addGuest">
           <div>
             <input
               type="text"
