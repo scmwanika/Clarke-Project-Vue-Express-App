@@ -1,23 +1,9 @@
+<script setup>
+import GuestForm from '../components/VisitUs/GuestForm.vue';
+</script>
+
 <template>
-  <div>
-    <HeaderSection />
-    <OurOffers />
-    <FooterSection />
+  <div class="wrapper">
+    <GuestForm />  
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HeaderSection from '@/components/HeaderSection.vue';
-import OurOffers from '@/components/VisitUs/OffersCard.vue';
-import FooterSection from '@/components/FooterSection.vue';
-
-export default {
-  name: 'VisitPage',
-  components: {
-    HeaderSection,
-    OurOffers,
-    FooterSection,
-  },
-};
-</script>

@@ -1,64 +1,59 @@
-const express = require('express');
+const express = require("express");
 
-const Employee = require('../models/employeeModel');
+const Employee = require("../models/employeeModel");
 
 // Creating a Router
 const router = express.Router();
 
-// ADD EMPLOYEE TO EMPLOYEES TABLE
-router.post('/employees/add', async (req, res) => {
+// ADD EMPLOYEE TO EMPLOYEE'S TABLE
+router.post('/employees/new', async (req, res) => {
   try {
     const newEmployee = new Employee(req.body);
     await newEmployee.save()
-      .then(() => res.json('Employee Added'));
+      .then(() => res.json(newEmployee));
   } catch (error) {
-    console.error(error);
-    res.json('Unsuccessful! Please Try Again');
+    res.send('error');
   }
 });
 
 // FIND ALL EMPLOYEES
-router.get('/employees', async (req, res) => {
+router.get("/employees", async (req, res) => {
   try {
     const employees = await Employee.find();
     res.json(employees);
   } catch (error) {
-    res.status(400).send('Unable to find records');
+    res.send("error");
   }
 });
 
-// FIND EMPLOYEES BY ID
-// Button "See Profile" onClick GETs this employee.
-router.get('/employee/:id', async (req, res) => {
+// FIND EMPLOYEE BY ID
+// edit-button onClick GETs this employee.
+router.get("/employees/:id", async (req, res) => {
   try {
     const employee = await Employee.findOne({ _id: req.params.id });
     res.json(employee);
   } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
+    res.send("error");
   }
 });
 
 // UPDATE EMPLOYEE
-// Update-Profile onClick, POSTs this employee.
-router.post('/update-employee/:id', async (req, res, next) => {
-  Employee.findByIdAndUpdate(req.params.id, {
-    $set: req.body,
-    // eslint-disable-next-line consistent-return
-  }, (error, data) => {
-    if (error) {
-      return next(error);
-    }
-    res.json(data);
-  });
+// update-button onClick POSTs this employee.
+router.post("/employees/edit", async (req, res) => {
+  try {
+    await Employee.updateOne({ _id: req.body._id }, req.body, { new: true });
+  } catch (error) {
+    res.send("error");
+  }
 });
 
 // DELETE EMPLOYEE
-router.get('/delete-employee/:id', async (req, res) => {
+router.get("/employees/delete/:id", async (req, res) => {
   try {
-    await Employee.deleteOne({ _id: req.params.id });
-    res.json('Employee Deleted');
+    const employee = await Employee.deleteOne({ _id: req.params.id });
+    res.json(employee);
   } catch (error) {
-    res.status(400).send('Unable to delete the record from the database');
+    res.send("error");
   }
 });
 

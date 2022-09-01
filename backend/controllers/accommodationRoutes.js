@@ -1,49 +1,59 @@
-const express = require('express');
+const express = require("express");
 
-const Accommodation = require('../models/accommodationModel');
+const Accommodation = require("../models/accommodationModel");
 
 // Creating a Router
 const router = express.Router();
 
-// ADD ACCOMMODATION TO ACCOMMODATIONS TABLE
-router.post('/accommodations/add', async (req, res) => {
+// ADD ACCOMMODATION TO ACCOMMODATION'S TABLE
+router.post('/accommodations/new', async (req, res) => {
   try {
     const newAccommodation = new Accommodation(req.body);
     await newAccommodation.save()
-      .then(() => res.json('Accommodation Added'));
+      .then(() => res.json(newAccommodation));
   } catch (error) {
-    console.error(error);
-    res.json('Unsuccessful! Please Try Again');
+    res.send('error');
   }
 });
 
-// FIND ALL ACCOMMODATIONS
-router.get('/accommodations', async (req, res) => {
+// FIND ALL ACCOMMODATION
+router.get("/accommodations", async (req, res) => {
   try {
     const accommodations = await Accommodation.find();
     res.json(accommodations);
   } catch (error) {
-    res.status(400).send('Unable to find records');
+    res.send("error");
   }
 });
 
 // FIND ACCOMMODATION BY ID
-router.get('/accommodations/:id', async (req, res) => {
+// edit-button onClick GETs this accommodation.
+router.get("/accommodations/:id", async (req, res) => {
   try {
     const accommodation = await Accommodation.findOne({ _id: req.params.id });
     res.json(accommodation);
   } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
+    res.send("error");
+  }
+});
+
+// UPDATE ACCOMMODATION
+// update-button onClick POSTs this accommodation.
+router.post("/accommodations/edit", async (req, res) => {
+  try {
+    await Accommodation.updateOne({ _id: req.body._id }, req.body, { new: true });
+  } catch (error) {
+    res.send("error");
   }
 });
 
 // DELETE ACCOMMODATION
-router.get('/delete-accommodation/:id', async (req, res) => {
+router.get("/accommodations/delete/:id", async (req, res) => {
   try {
-    await Accommodation.deleteOne({ _id: req.params.id });
-    res.json('Accommodation Deleted');
+    const accommodation = await Accommodation.deleteOne({ _id: req.params.id });
+    res.json(accommodation);
   } catch (error) {
-    res.status(400).send('Unable to delete the record from the database');
+    res.send("error");
   }
 });
 

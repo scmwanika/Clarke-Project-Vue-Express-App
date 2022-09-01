@@ -1,7 +1,7 @@
 <script setup>
-import EmployeeList from '../components/AboutUs/EmployeeList.vue';
-import GuestList from '../components/VisitUs/GuestList.vue';
-import ReviewList from '../components/VisitUs/ReviewList.vue';
+import TheActivities from './TheActivities.vue';
+import TheAccommodation from './TheAccommodation.vue';
+import ThePackages from './ThePackages.vue';
 </script>
 
 <template>
@@ -23,7 +23,7 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
         aria-controls="pills-employees"
         aria-selected="true"
       >
-        Employees
+        Activities
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -37,7 +37,7 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
         aria-controls="pills-guests"
         aria-selected="false"
       >
-        Guests
+        Accommodations
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -51,7 +51,7 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
         aria-controls="pills-reviews"
         aria-selected="false"
       >
-        Reviews
+        Packages
       </button>
     </li>
   </ul>
@@ -62,7 +62,7 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
       role="tabpanel"
       aria-labelledby="pills-employees-tab"
     >
-      <EmployeeList />
+      <TheActivities />
     </div>
     <div
       class="tab-pane fade"
@@ -70,7 +70,7 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
       role="tabpanel"
       aria-labelledby="pills-guests-tab"
     >
-      <GuestList />
+      <TheAccommodation />
     </div>
     <div
       class="tab-pane fade"
@@ -78,66 +78,13 @@ import ReviewList from '../components/VisitUs/ReviewList.vue';
       role="tabpanel"
       aria-labelledby="pills-reviews-tab"
     >
-      <ReviewList />
+      <ThePackages />
     </div>
   </div>
   </div>
 </template>
 
 <style scoped>
-/* .flex-container {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-
-.flex-component-left {
-  flex: 75%;
-  margin-right: 0.5%;
-}
-
-.flex-component-right {
-  flex: 25%;
-  margin-left: 0.5%;
-}
-
-.table {
-  margin: 0 auto;
-  font-size: 10pt;
-}
-
-th,
-td {
-  text-align: left;
-}
-
-.edit {
-  margin-right: 10px;
-}
-
-input[type="file"],
-input[type="text"],
-textarea {
-  width: 100%;
-  font-size: 14pt;
-}
-
-textarea {
-  padding-left: 10px;
-} */
-
-/*
-.btn-add {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-*/
-
-/* .logout {
-  margin-left: 15px;
-} */
-
 button {
   border: 0px solid;
 }

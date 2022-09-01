@@ -1,49 +1,59 @@
-const express = require('express');
+const express = require("express");
 
-const Activity = require('../models/activityModel');
+const Activity = require("../models/activityModel");
 
 // Creating a Router
 const router = express.Router();
 
-// ADD ACTIVITY TO ACTIVITIES TABLE
-router.post('/activities/add', async (req, res) => {
+// ADD ACTIVITY TO ACTIVITY'S TABLE
+router.post('/activities/new', async (req, res) => {
   try {
     const newActivity = new Activity(req.body);
     await newActivity.save()
-      .then(() => res.json('Activity Added'));
+      .then(() => res.json(newActivity));
   } catch (error) {
-    console.error(error);
-    res.json('Unsuccessful! Please Try Again');
+    res.send('error');
   }
 });
 
 // FIND ALL ACTIVITIES
-router.get('/activities', async (req, res) => {
+router.get("/activities", async (req, res) => {
   try {
     const activities = await Activity.find();
     res.json(activities);
   } catch (error) {
-    res.status(400).send('Unable to find records');
+    res.send("error");
   }
 });
 
-// FIND ACTIVITIES BY ID
-router.get('/activities/:id', async (req, res) => {
+// FIND ACTIVITY BY ID
+// edit-button onClick GETs this activity.
+router.get("/activities/:id", async (req, res) => {
   try {
     const activity = await Activity.findOne({ _id: req.params.id });
     res.json(activity);
   } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
+    res.send("error");
+  }
+});
+
+// UPDATE ACTIVITY
+// update-button onClick POSTs this activity.
+router.post("/activities/edit", async (req, res) => {
+  try {
+    await Activity.updateOne({ _id: req.body._id }, req.body, { new: true });
+  } catch (error) {
+    res.send("error");
   }
 });
 
 // DELETE ACTIVITY
-router.get('/delete-activity/:id', async (req, res) => {
+router.get("/activities/delete/:id", async (req, res) => {
   try {
-    await Activity.deleteOne({ _id: req.params.id });
-    res.json('Activity Deleted');
+    const activity = await Activity.deleteOne({ _id: req.params.id });
+    res.json(activity);
   } catch (error) {
-    res.status(400).send('Unable to delete the record from the database');
+    res.send("error");
   }
 });
 

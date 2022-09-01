@@ -1,63 +1,43 @@
 <template>
   <div>
+    <p style="text-align: center" class="employee-count">
+      {{ employeeCount }} employees
+    </p>
     <table class="table table-info">
       <!-- Head -->
       <tr>
-        <th>Image</th>
-        <th>File Name</th>
+        <th>File</th>
+        <th>Name</th>
         <th>Role</th>
         <th>Actions</th>
       </tr>
       <!-- Body -->
       <tr v-for="employee in employeeList" :key="employee._id">
-        <td>
-          <img
-            :src="
-              require('../../../backend/uploads/' + employee.fileName + '.jpg')
-            "
-            alt="card image"
-            width="120px"
-          />
-        </td>
+        <td>{{ employee.image }}</td>
         <td>{{ employee.fileName }}</td>
         <td>{{ employee.role }}</td>
-        <td>
-          <!-- EDIT LINK -->
-          <router-link
-            :to="{ name: 'EditData', params: { id: employee._id } }"
-            class="edit"
-          >
-            <input type="button" class="btn btn-info" value="edit" />
-          </router-link>
-          <!-- DELETE LINK -->
-          <a href="" @click.prevent="removeEmployee(employee._id)">
-            <input type="submit" class="btn btn-danger" value="delete" />
-          </a>
-        </td>
       </tr>
     </table>
-    <em>{{ message }}</em>
+    <!-- <em>{{ message }}</em> -->
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
-
+import { useEmployeeStore } from "../../stores/EmployeeStore";
+import { mapStores, mapState, mapActions } from 'pinia';
 export default {
-  props: {
-    message: String,
-  },
   computed: {
-    ...mapState(['employees']),
-    ...mapGetters(['employeeList']),
+    // State and Getters
+    // other computed properties
+    ...mapStores(useEmployeeStore),
+    ...mapState(useEmployeeStore, ['employeeList', 'employeeCount']),
   },
-  //
   created() {
-    this.listEmployees();
+    this.getEmployee();
   },
-  // METHODS
   methods: {
-    ...mapActions(['listEmployees', 'removeEmployee']),
+    // Actions
+    ...mapActions(useEmployeeStore, ['getEmployee']),
   },
 };
 </script>

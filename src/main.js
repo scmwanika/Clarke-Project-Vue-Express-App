@@ -1,27 +1,18 @@
-import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
-import Carousel3d from 'vue-carousel-3d';
-import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components';
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import router from './router';
-import store from './store';
-import App from './App.vue';
+import App from "./App.vue";
+import router from "./router";
 
-// STYLES (you could add them via script tags)
-import 'vue-material/dist/vue-material.min.css';
-import 'vue-material/dist/theme/default.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import "@/assets/main.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-Vue.use(BootstrapVue);
-Vue.use(Carousel3d);
-Vue.use(MdButton);
-Vue.use(MdContent);
-Vue.use(MdTabs);
+const app = createApp(App);
 
-Vue.config.productionTip = false;
+//app.use(Carousel3d);
+app.use(createPinia());
+app.use(router);
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
+app.mount("#app");

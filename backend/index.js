@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // ESTABLISHING DATABASE CONNECTION
 mongoose.connect(DATABASE, {
-  useCreateIndex: true,
+  //useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
