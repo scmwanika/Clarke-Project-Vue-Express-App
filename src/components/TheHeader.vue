@@ -56,10 +56,8 @@ import { RouterLink, RouterView } from "vue-router";
               <br />
               <!--Links-->
               <div>
-                <a class="btn btn-outline-info" href="/visit-us"
-                  >Visit Us</a
-                >
-                <a class="btn btn-outline-info" href="/buy-coffee"
+                <a href="/visit-us" class="btn btn-outline-info">Visit Us</a>
+                <a href="/buy-coffee" class="btn btn-outline-info"
                   >Buy Coffee</a
                 >
               </div>
@@ -77,6 +75,7 @@ import { RouterLink, RouterView } from "vue-router";
     </body>
   </div>
   <RouterView />
+  <br />
 </template>
 
 <style scoped>

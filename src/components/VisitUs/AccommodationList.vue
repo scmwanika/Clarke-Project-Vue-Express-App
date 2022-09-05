@@ -1,21 +1,19 @@
 <template>
-  <div>
-    <table class="table table-info">
+  <div style="font-size: 12pt"><br />
+    <table>
       <!-- Head -->
       <tr>
-        <th>Image</th>
-        <th>File Name</th>
+        <th>File</th>
+        <th>Name</th>
         <th>Fee</th>
         <th>Description</th>
-        <th>Actions</th>
+        <th>{{ accommodationCount }} accommodations</th>
       </tr>
       <!-- Body -->
       <tr v-for="accommodation in accommodationList" :key="accommodation._id">
         <td>
           <img
-            :src="
-              require('../../../backend/uploads/' + accommodation.fileName + '.jpg')
-            "
+            :src="'../../../backend/uploads/' + accommodation.fileName + '.jpg'"
             alt="accommodation"
             width="120px"
           />
@@ -23,17 +21,29 @@
         <td>{{ accommodation.fileName }}</td>
         <td>{{ accommodation.fee }}</td>
         <td>{{ accommodation.description }}</td>
-        <td>
-          <router-link
-            :to="{ name: 'edit', params: { id: accommodation._id } }"
-            class="edit"
-            ><!-- EDIT ICON -->
-            <img src="@/assets/edit-16.png" alt="edit-icon" />
-          </router-link>
-          <a href="" @click.prevent="removeAccommodation(accommodation._id)"
-            ><!-- DELETE ICON -->
-            <img src="@/assets/delete-16.png" alt="delete-icon" />
-          </a>
+        <td style="text-align: center">
+          <!-- EDIT RECORD -->
+          <RouterLink :to="{ name: '', params: { id: accommodation._id } }">
+            <input
+              style="border: none"
+              type="button"
+              class="btn-outline-info"
+              value="edit"
+            />
+          </RouterLink>
+
+          <!-- DELETE RECORD -->
+          <RouterLink
+            to=""
+            @click.prevent="removeAccommodation(accommodation._id)"
+          >
+            <input
+              style="border: none"
+              type="submit"
+              class="btn-outline-danger"
+              value="delete"
+            />
+          </RouterLink>
         </td>
       </tr>
     </table>
@@ -42,23 +52,52 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
-
+import { useAccommodationStore } from "@/stores/AccommodationStore";
+import { mapStores, mapState, mapActions } from "pinia";
 export default {
-  props: {
-    message: String,
-  },
   computed: {
-    ...mapState(['accommodations']),
-    ...mapGetters(['accommodationList']),
+    // State and Getters
+    // other computed properties
+    ...mapStores(useAccommodationStore),
+    ...mapState(useAccommodationStore, [
+      "accommodationList",
+      "accommodationCount",
+    ]),
   },
-  //
   created() {
-    this.listAccommodations();
+    this.getAccommodation();
   },
-  // METHODS
   methods: {
-    ...mapActions(['listAccommodations', 'removeAccommodation']),
+    // Actions
+    ...mapActions(useAccommodationStore, [
+      "getAccommodation",
+      "removeAccommodation",
+    ]),
   },
 };
 </script>
+
+<style scoped>
+p {
+  text-align: center;
+  font-size: 12pt;
+}
+
+table {
+  margin: 0 auto;
+  border: 1px solid;
+}
+
+th {
+  background-color: #068d68;
+  border: 1px solid #068d68;
+  color: white;
+  font-weight: lighter;
+  text-align: center;
+}
+
+td {
+  width: 1%;
+  border: 1px solid #068d68;
+}
+</style>

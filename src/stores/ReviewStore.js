@@ -12,7 +12,7 @@ export const useReviewStore = defineStore("review", {
   },
   actions: {
     // Create Review
-    
+
     // Read Reviews
     getReview() {
       axios

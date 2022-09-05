@@ -98,7 +98,6 @@ h5 {
 .about-investment-left,
 .about-investment-middle,
 .about-investment-right {
-  /*padding: 10px;*/
   flex: 33.33%;
 }
 

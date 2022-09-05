@@ -5,12 +5,12 @@ const Review = require("../models/reviewModel");
 // Creating a Router
 const router = express.Router();
 
-// ADD REVIEW TO REVIEW'S TABLE
+// NEW REVIEW
 router.post('/reviews/new', async (req, res) => {
   try {
     const newReview = new Review(req.body);
     await newReview.save()
-      .then(() => res.json(newReview));
+      .then(() => res.send('saved'));
   } catch (error) {
     res.send('error');
   }
@@ -27,7 +27,7 @@ router.get("/reviews", async (req, res) => {
 });
 
 // FIND REVIEW BY ID
-// edit-button onClick GETs this review.
+// Button "edit" onClick GETS this review.
 router.get("/reviews/:id", async (req, res) => {
   try {
     const review = await Review.findOne({ _id: req.params.id });
@@ -38,10 +38,11 @@ router.get("/reviews/:id", async (req, res) => {
 });
 
 // UPDATE REVIEW
-// update-button onClick POSTs this review.
-router.post("/reviews/edit", async (req, res) => {
+// Button "Update Review" onClick UPDATES this review.
+router.post("/reviews/edit/:id", async (req, res) => {
   try {
-    await Review.updateOne({ _id: req.body._id }, req.body, { new: true });
+    const review = await Review.updateOne({ _id: req.body._id }, req.body, { new: true });
+    res.send('updated');
   } catch (error) {
     res.send("error");
   }
@@ -51,7 +52,7 @@ router.post("/reviews/edit", async (req, res) => {
 router.get("/reviews/delete/:id", async (req, res) => {
   try {
     const review = await Review.deleteOne({ _id: req.params.id });
-    res.json(review);
+    res.send('deleted');
   } catch (error) {
     res.send("error");
   }

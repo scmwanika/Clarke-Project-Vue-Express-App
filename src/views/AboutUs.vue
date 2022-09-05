@@ -1,14 +1,13 @@
 <script setup>
+import TheHeader from "../components/TheHeader.vue";
 import TheAbout from '../components/AboutUs/TheAbout.vue';
 import TheTeam from '../components/AboutUs/TheTeam.vue';
-import TheFooter from '../components/TheFooter.vue';
 </script>
 
 <template>
   <div class="wrapper">
-    <br />
+    <TheHeader />
     <TheAbout />
     <TheTeam />
-    <TheFooter />  
   </div>
 </template>

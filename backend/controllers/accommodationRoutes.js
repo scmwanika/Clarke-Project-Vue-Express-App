@@ -5,18 +5,18 @@ const Accommodation = require("../models/accommodationModel");
 // Creating a Router
 const router = express.Router();
 
-// ADD ACCOMMODATION TO ACCOMMODATION'S TABLE
+// NEW ACCOMMODATION
 router.post('/accommodations/new', async (req, res) => {
   try {
     const newAccommodation = new Accommodation(req.body);
     await newAccommodation.save()
-      .then(() => res.json(newAccommodation));
+      .then(() => res.send('saved'));
   } catch (error) {
     res.send('error');
   }
 });
 
-// FIND ALL ACCOMMODATION
+// FIND ALL ACCOMMODATIONS
 router.get("/accommodations", async (req, res) => {
   try {
     const accommodations = await Accommodation.find();
@@ -27,7 +27,7 @@ router.get("/accommodations", async (req, res) => {
 });
 
 // FIND ACCOMMODATION BY ID
-// edit-button onClick GETs this accommodation.
+// Button "edit" onClick GETS this accommodation.
 router.get("/accommodations/:id", async (req, res) => {
   try {
     const accommodation = await Accommodation.findOne({ _id: req.params.id });
@@ -38,10 +38,11 @@ router.get("/accommodations/:id", async (req, res) => {
 });
 
 // UPDATE ACCOMMODATION
-// update-button onClick POSTs this accommodation.
-router.post("/accommodations/edit", async (req, res) => {
+// Button "Update Accommodation" onClick UPDATES this accommodation.
+router.post("/accommodations/edit/:id", async (req, res) => {
   try {
-    await Accommodation.updateOne({ _id: req.body._id }, req.body, { new: true });
+    const accommodation = await Accommodations.updateOne({ _id: req.body._id }, req.body, { new: true });
+    res.send('updated');
   } catch (error) {
     res.send("error");
   }
@@ -51,7 +52,7 @@ router.post("/accommodations/edit", async (req, res) => {
 router.get("/accommodations/delete/:id", async (req, res) => {
   try {
     const accommodation = await Accommodation.deleteOne({ _id: req.params.id });
-    res.json(accommodation);
+    res.send('deleted');
   } catch (error) {
     res.send("error");
   }

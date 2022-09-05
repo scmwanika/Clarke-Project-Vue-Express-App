@@ -1,11 +1,7 @@
-<script setup>
-  import { RouterLink, RouterView } from "vue-router";
-</script>
-
 <template>
   <!-- Team -->
   <div class="team-section">
-    <br /><br />
+    <br />
     <div class="card-data">
       <div
         v-for="employee in employeeList"
@@ -14,38 +10,38 @@
       >
         <div class="card">
           <img
-            :src="('../../../backend/uploads/' + employee.fileName + '.jpg')"
+            :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
             alt="card image"
           />
           <div class="card-body">
             <p><h6 class="card-title">{{ employee.fileName }}</h6></p>
             <p class="card-text">{{ employee.role }}</p>
-            <RouterLink
-              to="/profile-employee/{{this.employee._id}}"
-              ><!-- SHOW PROFILE -->
+              <!-- SHOW PROFILE -->
               <p>
-                <button class="btn btn-outline-info" v-on:click="editEmployee()" >
-                  See Profile
-                </button>
+                <RouterLink :to="{ name: 'show-profile', params: { id: employee._id } }">
+                  <input
+                    type="button"
+                    class="btn btn-info"
+                    value="Show Profile"
+                  />
+                </RouterLink>
               </p>
-            </RouterLink>
           </div>
         </div>
       </div>
     </div>
-    <span onClick="this.style.visibility='hidden';"
+    <span onClick="this.style.visibility='hidden'"
       ><p>
         <button
           style="border: none"
-          class="btn btn-outline-info"
+          class="btn btn-info"
           v-on:click="getEmployee()"
         >
-          UNCOVER OUR TEAM
+          OUR TEAM
         </button>
       </p>
     </span>
   </div>
-  <RouterView />
 </template>
 
 <script>
@@ -60,7 +56,7 @@ export default {
   },
   methods: {
     // Actions
-    ...mapActions(useEmployeeStore, ["getEmployee", "editEmployee"]),
+    ...mapActions(useEmployeeStore, ["getEmployee"]),
   },
 };
 </script>
@@ -76,11 +72,5 @@ export default {
 p {
   font-size: 10pt;
   text-align: center;
-}
-
-button {
-  width: auto;
-  color: grey;
-  background-color: #f5f5f5;
 }
 </style>

@@ -20,26 +20,28 @@
 </template>
 
 <script>
-import { useEmployeeStore } from "../../src/stores/EmployeeStore";
-import { mapStores, mapState, mapActions } from "pinia";
+import axios from "axios";
+import api from "../api";
 export default {
-  computed: {
-    // State and Getters
-    // other computed properties
-    ...mapStores(useEmployeeStore),
-    ...mapState(useEmployeeStore, ["employeeList", "employeeCount"]),
+  name: "profile",
+  data() {
+    return {
+      employee: {},
+    };
   },
   created() {
-    this.editEmployee();
-  },
-  methods: {
-    // Actions
-    ...mapActions(useEmployeeStore, ["getEmployee", "editEmployee"]),
+    axios.get(`${api}/employees/${this.$route.params.id}`).then((res) => {
+      this.employee = res.data;
+    });
   },
 };
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+}
+
 * {
   box-sizing: border-box;
 }

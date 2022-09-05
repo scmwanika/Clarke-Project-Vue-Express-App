@@ -1,7 +1,3 @@
-<script setup>
-import TheOffers from "./TheOffers.vue";
-</script>
-
 <template>
   <div class="flex-container">
     <div class="flex-item-left">
@@ -12,7 +8,7 @@ import TheOffers from "./TheOffers.vue";
       <br /><br /><br />
       <div style="background-color: rgba(0, 0, 0, 0.05)">
         <h6>Book Your Visit Now</h6>
-        <form @submit.prevent="addGuest()">
+        <form @submit.prevent="updateBooking()">
           <div>
             <input
               type="text"
@@ -60,10 +56,16 @@ import TheOffers from "./TheOffers.vue";
               required
             />
             <br />
-            <input type="submit" class="btn btn-success btn-block" />
+            <input
+              type="submit"
+              class="btn btn-success btn-block"
+              value="Update"
+            />
           </div>
         </form>
-        <p><em>{{ message }}</em></p>
+        <p>
+          <em>{{ message }}</em>
+        </p>
       </div>
     </div>
   </div>
@@ -71,20 +73,30 @@ import TheOffers from "./TheOffers.vue";
 
 <script>
 import axios from "axios";
-import api from "../../api";
+import api from "../api";
 
 export default {
+  name: "booking",
   data() {
     return {
       guest: {},
     };
   },
+  // edit-button onClick GETs this guest.
+  created() {
+    axios.get(`${api}/guests/${this.$route.params.id}`).then((res) => {
+      this.guest = res.data;
+    });
+  },
   methods: {
-    // Actions
-    async addGuest() {
+    async updateBooking() {
+      // Button "update" onClick, UPDATES this booking.
       try {
-        await axios.post(`${api}/guests/new`, this.guest);
-        this.guest = {};
+        await axios
+          .post(`${api}/guests/edit/${this.$route.params.id}`, this.guest)
+          .then(() => {
+            this.$router.push("/dashboard");
+          });
         this.message = "Sent Successfully";
       } catch {
         this.message = "Unsuccessful! Please, Try Again.";
@@ -97,6 +109,10 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
+}
+
+h5 {
+  color: #068d68;
 }
 
 p {
@@ -116,32 +132,6 @@ form {
 em {
   color: red;
   font-size: 10pt;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  font-size: 12pt;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.flex-item-left {
-  flex: 75%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-}
-
-.flex-item-right {
-  flex: 25%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-}
-
-/* Responsive layout - makes a one column-layout instead of two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
 }
 </style>

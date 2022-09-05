@@ -5,12 +5,12 @@ const Guest = require("../models/guestModel");
 // Creating a Router
 const router = express.Router();
 
-// ADD GUEST TO GUEST'S TABLE
+// NEW GUEST
 router.post('/guests/new', async (req, res) => {
   try {
     const newGuest = new Guest(req.body);
     await newGuest.save()
-      .then(() => res.json(newGuest));
+      .then(() => res.send('saved'));
   } catch (error) {
     res.send('error');
   }
@@ -27,7 +27,7 @@ router.get("/guests", async (req, res) => {
 });
 
 // FIND GUEST BY ID
-// edit-button onClick GETs this guest.
+// Button "edit" onClick GETS this guest.
 router.get("/guests/:id", async (req, res) => {
   try {
     const guest = await Guest.findOne({ _id: req.params.id });
@@ -37,11 +37,12 @@ router.get("/guests/:id", async (req, res) => {
   }
 });
 
-// UPDATE GUEST
-// update-button onClick POSTs this guest.
-router.post("/guests/edit", async (req, res) => {
+// UPDATE BOOKING
+// Button "Update Booking" onClick UPDATES this booking.
+router.post("/guests/edit/:id", async (req, res) => {
   try {
-    await Guest.updateOne({ _id: req.body._id }, req.body, { new: true });
+    const guest = await Guest.updateOne({ _id: req.body._id }, req.body, { new: true });
+    res.send('updated');
   } catch (error) {
     res.send("error");
   }
@@ -51,7 +52,7 @@ router.post("/guests/edit", async (req, res) => {
 router.get("/guests/delete/:id", async (req, res) => {
   try {
     const guest = await Guest.deleteOne({ _id: req.params.id });
-    res.json(guest);
+    res.send('deleted');
   } catch (error) {
     res.send("error");
   }

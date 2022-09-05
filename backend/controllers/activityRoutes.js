@@ -5,12 +5,12 @@ const Activity = require("../models/activityModel");
 // Creating a Router
 const router = express.Router();
 
-// ADD ACTIVITY TO ACTIVITY'S TABLE
+// NEW ACTIVITY
 router.post('/activities/new', async (req, res) => {
   try {
     const newActivity = new Activity(req.body);
     await newActivity.save()
-      .then(() => res.json(newActivity));
+      .then(() => res.send('saved'));
   } catch (error) {
     res.send('error');
   }
@@ -27,7 +27,7 @@ router.get("/activities", async (req, res) => {
 });
 
 // FIND ACTIVITY BY ID
-// edit-button onClick GETs this activity.
+// Button "edit" onClick GETS this activity.
 router.get("/activities/:id", async (req, res) => {
   try {
     const activity = await Activity.findOne({ _id: req.params.id });
@@ -38,10 +38,11 @@ router.get("/activities/:id", async (req, res) => {
 });
 
 // UPDATE ACTIVITY
-// update-button onClick POSTs this activity.
-router.post("/activities/edit", async (req, res) => {
+// Button "Update Activity" onClick UPDATES this activity.
+router.post("/activities/edit/:id", async (req, res) => {
   try {
-    await Activity.updateOne({ _id: req.body._id }, req.body, { new: true });
+    const activity = await Activity.updateOne({ _id: req.body._id }, req.body, { new: true });
+    res.send('updated');
   } catch (error) {
     res.send("error");
   }
@@ -51,7 +52,7 @@ router.post("/activities/edit", async (req, res) => {
 router.get("/activities/delete/:id", async (req, res) => {
   try {
     const activity = await Activity.deleteOne({ _id: req.params.id });
-    res.json(activity);
+    res.send('deleted');
   } catch (error) {
     res.send("error");
   }

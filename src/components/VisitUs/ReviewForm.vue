@@ -44,7 +44,7 @@
 
       <input type="submit" class="btn btn-success btn-block" value="Submit A Review About Your Visit To The Farm."/>
     </form>
-    <em>{{ message }}</em>
+    <p><em>{{ message }}</em></p>
   </div>
 </template>
 
@@ -79,9 +79,12 @@ form {
   margin-right: 5%;
 }
 
-em {
-  color: red;
-  font-size: 10pt;
+p {
   text-align: center;
+}
+
+em {
+  color: white;
+  font-size: 10pt;
 }
 </style>

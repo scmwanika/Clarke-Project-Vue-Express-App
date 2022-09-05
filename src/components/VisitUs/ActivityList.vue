@@ -1,37 +1,44 @@
 <template>
-  <div>
-    <table class="table table-info">
+  <div style="font-size: 12pt"><br />
+    <table>
       <!-- Head -->
       <tr>
-        <th>Image</th>
-        <th>File Name</th>
+        <th>File</th>
+        <th>Name</th>
         <th>Description</th>
-        <th>Actions</th>
+        <th>{{ activityCount }} activities</th>
       </tr>
       <!-- Body -->
       <tr v-for="activity in activityList" :key="activity._id">
         <td>
           <img
-            :src="
-              require('../../../backend/uploads/' + activity.fileName + '.jpg')
-            "
+            :src="'../../../backend/uploads/' + activity.fileName + '.jpg'"
             alt="activity"
             width="120px"
           />
         </td>
         <td>{{ activity.fileName }}</td>
         <td>{{ activity.description }}</td>
-        <td>
-          <router-link
-            :to="{ name: 'edit', params: { id: activity._id } }"
-            class="edit"
-            ><!-- EDIT ICON -->
-            <img src="@/assets/edit-16.png" alt="edit-icon" />
-          </router-link>
-          <a href="" @click.prevent="removeActivity(activity._id)"
-            ><!-- DELETE ICON -->
-            <img src="@/assets/delete-16.png" alt="delete-icon" />
-          </a>
+        <td style="text-align: center">
+          <!-- EDIT RECORD -->
+          <RouterLink :to="{ name: '', params: { id: activity._id } }">
+            <input
+              style="border: none"
+              type="button"
+              class="btn-outline-info"
+              value="edit"
+            />
+          </RouterLink>
+
+          <!-- DELETE RECORD -->
+          <RouterLink to="" @click.prevent="removeActivity(activity._id)">
+            <input
+              style="border: none"
+              type="submit"
+              class="btn-outline-danger"
+              value="delete"
+            />
+          </RouterLink>
         </td>
       </tr>
     </table>
@@ -40,23 +47,46 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
-
+import { useActivityStore } from "@/stores/ActivityStore";
+import { mapStores, mapState, mapActions } from "pinia";
 export default {
-  props: {
-    message: String,
-  },
   computed: {
-    ...mapState(['activities']),
-    ...mapGetters(['activityList']),
+    // State and Getters
+    // other computed properties
+    ...mapStores(useActivityStore),
+    ...mapState(useActivityStore, ["activityList", "activityCount"]),
   },
-  //
   created() {
-    this.listActivities();
+    this.getActivity();
   },
-  // METHODS
   methods: {
-    ...mapActions(['listActivities', 'removeActivity']),
+    // Actions
+    ...mapActions(useActivityStore, ["getActivity", "removeActivity"]),
   },
 };
 </script>
+
+<style scoped>
+p {
+  text-align: center;
+  font-size: 12pt;
+}
+
+table {
+  margin: 0 auto;
+  border: 1px solid;
+}
+
+th {
+  background-color: #068d68;
+  border: 1px solid #068d68;
+  color: white;
+  font-weight: lighter;
+  text-align: center;
+}
+
+td {
+  width: 1%;
+  border: 1px solid #068d68;
+}
+</style>

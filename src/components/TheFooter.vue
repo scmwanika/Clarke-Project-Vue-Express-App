@@ -1,6 +1,6 @@
 <script setup>
 import ReviewForm from "./VisitUs/ReviewForm.vue";
-import ReviewList from "./VisitUs/ReviewList.vue";
+//import ReviewList from "./VisitUs/ReviewList.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import ReviewList from "./VisitUs/ReviewList.vue";
         <ReviewForm />
       </div>
       <div class="footer-item-middle">
-        <ReviewList />
+        <iframe src="/reviews"></iframe>
       </div>
       <div style="color: white" class="footer-item-right">
         <h6>LINKS</h6>

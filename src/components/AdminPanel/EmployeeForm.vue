@@ -1,12 +1,8 @@
-<script setup>
-import EmployeeList from '../../components/AboutUs/EmployeeList.vue';
-</script>
-
-<template>
+<!-- <template>
   <div class="flex-container">
     <div class="flex-component-left"><EmployeeList /></div>
     <div class="flex-component-right">
-      <!-- <form @submit.prevent="addEmployee" enctype="multipart/form-data">
+      <form @submit.prevent="addEmployee" enctype="multipart/form-data">
         <h6>Upload File</h6>
         <input type="file" ref="file" @change="onSelect" />
         <br />
@@ -35,7 +31,7 @@ import EmployeeList from '../../components/AboutUs/EmployeeList.vue';
           @click="insertEmployee(employee)"
         />
         <em>{{ message }}</em>
-      </form> -->
+      </form>
     </div>
   </div>
-</template>
+</template> -->

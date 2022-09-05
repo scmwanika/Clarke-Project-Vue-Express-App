@@ -26,12 +26,20 @@ export const useEmployeeStore = defineStore("employee", {
     },
 
     // Update Employee
-    editEmployee() {
-      axios.get(`${api}/employee/${this.$route.params.id}`).then((res) => {
-        this.employeeList = res.data;
-      });
-    },
 
     // Delete Employee
+    removeEmployee(id) {
+      const indexOfArrayItem = this.employeeList.findIndex((i) => i._id === id);
+      if (window.confirm("Do you really want to delete?")) {
+        axios
+          .get(`${api}/employees/delete/${id}`)
+          .then(() => {
+            this.employeeList.splice(indexOfArrayItem, 1);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
 });

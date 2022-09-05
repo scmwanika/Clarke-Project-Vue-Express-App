@@ -2,21 +2,23 @@
   <div>
     <div class="flex-container">
       <div class="flex-item-left">
-        <h6>Employee Profile</h6>
         <img
-          :src="require('../../../backend/uploads/' + employee.fileName + '.jpg')"
+          :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
           alt="card image"
         />
       </div>
       <div class="flex-item-right">
-        <form @submit.prevent="handleUpdateForm">
-          <p><br /></p>
+        <br />
+        <h5>Employee Profile</h5>
+        <form @submit.prevent="updateEmployee">
+          <br />
           <div class="form-group">
             <input
               type="text"
               class="form-control"
               placeholder="file name"
-              v-model="employee.fileName" readonly
+              v-model="employee.fileName"
+              readonly
             />
           </div>
 
@@ -31,9 +33,7 @@
           </div>
 
           <div class="form-group">
-            <button class="btn btn-success btn-block">
-              Update Profile
-            </button>
+            <button class="btn btn-success btn-block">Update Profile</button>
             <em>{{ message }}</em>
           </div>
         </form>
@@ -43,35 +43,32 @@
 </template>
 
 <script>
-import axios from 'axios';
-import api from '../../api';
-
+import axios from "axios";
+import api from "../api";
 export default {
-  props: {
-    message: String,
-  },
+  name: "edit-profile",
   data() {
     return {
       employee: {},
     };
   },
-  // edit-button onClick, GETs this employee.
   created() {
-    axios.get(`${api}/employee/${this.$route.params.id}`).then((res) => {
+    axios.get(`${api}/employees/${this.$route.params.id}`).then((res) => {
       this.employee = res.data;
     });
   },
-  //
   methods: {
-    async handleUpdateForm() {
-      // update-button onClick, POSTs this employee.
+    async updateEmployee() {
+      // Button "Update Profile" onClick, UPDATES this employee.
       try {
-        await axios.post(`${api}/update-employee/${this.$route.params.id}`, this.employee).then(() => {
-          this.$router.push('/admin');
-        });
-        this.message = 'Sent Successfully';
+        await axios
+          .post(`${api}/employees/edit/${this.$route.params.id}`, this.employee)
+          .then(() => {
+            this.$router.push("/dashboard");
+          });
+        this.message = "Sent Successfully";
       } catch {
-        this.message = 'Unsuccessful! Please, Try Again.';
+        this.message = "Unsuccessful! Please, Try Again.";
       }
     },
   },
@@ -79,30 +76,24 @@ export default {
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
-p {
-  font-size: 10pt;
-  text-align: center;
-}
-
-form {
+h5 {
   text-align: left;
-  font-size: 10pt;
-}
-
-em {
-  color: red;
-  font-size: 10pt;
-  text-align: center;
 }
 
 .flex-container {
   display: flex;
   flex-direction: row;
   font-size: 12pt;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .flex-item-left {
@@ -113,6 +104,7 @@ em {
 
 .flex-item-right {
   flex: 75%;
+  text-align: left;
   padding-left: 1%;
   padding-right: 1%;
 }

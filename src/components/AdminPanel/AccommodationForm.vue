@@ -46,16 +46,10 @@
 </template>
 
 <script>
-import AccommodationList from '@/components/VisitUs/AccommodationList.vue';
-import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../../api';
 
 export default {
-  components: {
-    AccommodationList,
-  },
-  name: 'UploadAccommodations',
   props: {
     message: String,
   },
@@ -65,13 +59,10 @@ export default {
     };
   },
   methods: {
-    //
     onSelect() {
       const file = this.$refs.file.files[0];
       this.file = file;
     },
-    ...mapMutations(['INSERT_ACCOMMODATION']),
-    ...mapActions(['insertAccommodation']),
     async addAccommodation() {
       const formData = new FormData();
       formData.append('file', this.file);

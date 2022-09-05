@@ -36,16 +36,10 @@
 </template>
 
 <script>
-import ActivityList from '@/components/VisitUs/ActivityList.vue';
-import { mapMutations, mapActions } from 'vuex';
 import axios from 'axios';
 import api from '../../api';
 
 export default {
-  components: {
-    ActivityList,
-  },
-  name: 'UploadActivities',
   props: {
     message: String,
   },
@@ -55,13 +49,10 @@ export default {
     };
   },
   methods: {
-    //
     onSelect() {
       const file = this.$refs.file.files[0];
       this.file = file;
     },
-    ...mapMutations(['INSERT_ACTIVITY']),
-    ...mapActions(['insertActivity']),
     async addActivity() {
       const formData = new FormData();
       formData.append('file', this.file);
