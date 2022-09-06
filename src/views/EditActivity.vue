@@ -5,7 +5,8 @@
       <div class="col-sm"></div>
       <!-- Column Two -->
       <div class="col-sm">
-        <form @submit.prevent="newAccommodation" enctype="multipart/form-data">
+        <P>ACTIVITY</P>
+        <form @submit.prevent="updateActivity" enctype="multipart/form-data">
           <input type="file" ref="file" @change="onSelect" />
           <br /><br />
           <div class="form-group">
@@ -13,7 +14,7 @@
               type="text"
               class="form-control"
               placeholder="file name"
-              v-model="accommodation.fileName"
+              v-model="activity.fileName"
             />
           </div>
 
@@ -22,7 +23,7 @@
               type="text"
               class="form-control"
               placeholder="fee"
-              v-model="accommodation.fee"
+              v-model="activity.fee"
               required
             />
           </div>
@@ -32,7 +33,7 @@
               style="width: 100%"
               rows="3"
               placeholder="description"
-              v-model="accommodation.description"
+              v-model="activity.description"
               required
             >
             </textarea>
@@ -52,27 +53,29 @@
 
 <script>
 import axios from "axios";
-import api from "../../api";
+import api from "../api";
 export default {
+  name: "activity",
   data() {
     return {
-      accommodation: {},
+      activity: {},
     };
   },
+  // Button "edit" onClick GETS this activity.
+  created() {
+    axios.get(`${api}/activities/${this.$route.params.id}`).then((res) => {
+      this.activity = res.data;
+    });
+  },
   methods: {
-    onSelect() {
-      const file = this.$refs.file.files[0];
-      this.file = file;
-    },
-    async newAccommodation() {
-      const formData = new FormData();
-      formData.append("file", this.file);
+    async updateActivity() {
+      // Button "update" onClick, UPDATES this booking.
       try {
-        // UPLOAD FILE TO STORAGE DIRECTORY
-        await axios.post(`${api}/uploads`, formData);
-        // UPLOAD DATA TO DATABASE
-        await axios.post(`${api}/accommodations/new`, this.accommodation);
-        this.accommodation = {};
+        await axios
+          .post(`${api}/activities/edit/${this.$route.params.id}`, this.activity)
+          .then(() => {
+            this.$router.push("/dashboard");
+          });
         this.message = "Sent Successfully";
       } catch {
         this.message = "Unsuccessful! Please, Try Again.";
@@ -81,3 +84,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+label {
+  width: 100%;
+  font-size: 10pt;
+  color: red;
+}
+</style>

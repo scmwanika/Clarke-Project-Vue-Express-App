@@ -11,7 +11,7 @@
         <div class="card">
           <img
             :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
-            alt="card image"
+            alt="employee"
           />
           <div class="card-body">
             <p><h6 class="card-title">{{ employee.fileName }}</h6></p>

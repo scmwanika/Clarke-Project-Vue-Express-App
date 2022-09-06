@@ -10,7 +10,12 @@
       </tr>
       <!-- Body -->
       <tr v-for="employee in employeeList" :key="employee._id">
-        <td>{{ employee.image }}</td>
+        <td>
+          <img
+            :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
+            alt="employee"
+          />
+        </td>
         <td>{{ employee.fileName }}</td>
         <td>{{ employee.role }}</td>
         <td style="text-align: center">
@@ -63,9 +68,8 @@ export default {
 </script>
 
 <style scoped>
-p {
-  text-align: center;
-  font-size: 12pt;
+img {
+  width: 100%;
 }
 
 table {

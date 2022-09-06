@@ -6,6 +6,9 @@ const activitySchema = new Schema({
   fileName: {
     type: String,
   },
+  fee: {
+    type: String,
+  },
   description: {
     type: String,
   },

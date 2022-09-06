@@ -5,6 +5,8 @@ import BuyCoffee from "@/views/BuyCoffee.vue";
 import ProfileEmployee from "@/views/ProfileEmployee.vue";
 import EditEmployee from "@/views/EditEmployee.vue";
 import EditBooking from "@/views/EditBooking.vue";
+import EditActivity from "@/views/EditActivity.vue";
+import EditAccommodation from "@/views/EditAccommodation.vue";
 import ReviewList from "@/components/VisitUs/ReviewList.vue";
 import AdminPanel from "@/views/AdminPanel.vue";
 import TheForms from "@/components/AdminPanel/TheForms.vue";
@@ -42,6 +44,16 @@ const router = createRouter({
       path: "/bookings/edit/:id",
       name: "booking",
       component: EditBooking,
+    },
+    {
+      path: "/activities/edit/:id",
+      name: "activity",
+      component: EditActivity,
+    },
+    {
+      path: "/accommodations/edit/:id",
+      name: "accommodation",
+      component: EditAccommodation,
     },
     {
       path: '/reviews',

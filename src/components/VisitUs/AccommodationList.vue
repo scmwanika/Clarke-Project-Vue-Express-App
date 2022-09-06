@@ -15,7 +15,6 @@
           <img
             :src="'../../../backend/uploads/' + accommodation.fileName + '.jpg'"
             alt="accommodation"
-            width="120px"
           />
         </td>
         <td>{{ accommodation.fileName }}</td>
@@ -23,7 +22,7 @@
         <td>{{ accommodation.description }}</td>
         <td style="text-align: center">
           <!-- EDIT RECORD -->
-          <RouterLink :to="{ name: '', params: { id: accommodation._id } }">
+          <RouterLink :to="{ name: 'accommodation', params: { id: accommodation._id } }">
             <input
               style="border: none"
               type="button"
@@ -78,9 +77,8 @@ export default {
 </script>
 
 <style scoped>
-p {
-  text-align: center;
-  font-size: 12pt;
+img {
+  width: 100%;
 }
 
 table {

@@ -4,7 +4,7 @@
       <div class="flex-item-left">
         <img
           :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
-          alt="card image"
+          alt="employee"
         />
       </div>
       <div class="flex-item-right">

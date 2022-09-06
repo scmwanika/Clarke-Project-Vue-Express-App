@@ -5,7 +5,11 @@
       <div class="col-sm"></div>
       <!-- Column Two -->
       <div class="col-sm">
-        <form @submit.prevent="newAccommodation" enctype="multipart/form-data">
+        <P>ACCOMMODATION</P>
+        <form
+          @submit.prevent="updateAccommodation"
+          enctype="multipart/form-data"
+        >
           <input type="file" ref="file" @change="onSelect" />
           <br /><br />
           <div class="form-group">
@@ -52,27 +56,29 @@
 
 <script>
 import axios from "axios";
-import api from "../../api";
+import api from "../api";
 export default {
+  name: "accommodation",
   data() {
     return {
       accommodation: {},
     };
   },
+  // Button "edit" onClick GETS this accommodation.
+  created() {
+    axios.get(`${api}/accommodations/${this.$route.params.id}`).then((res) => {
+      this.accommodation = res.data;
+    });
+  },
   methods: {
-    onSelect() {
-      const file = this.$refs.file.files[0];
-      this.file = file;
-    },
-    async newAccommodation() {
-      const formData = new FormData();
-      formData.append("file", this.file);
+    async updateAccommodation() {
+      // Button "update" onClick, UPDATES this booking.
       try {
-        // UPLOAD FILE TO STORAGE DIRECTORY
-        await axios.post(`${api}/uploads`, formData);
-        // UPLOAD DATA TO DATABASE
-        await axios.post(`${api}/accommodations/new`, this.accommodation);
-        this.accommodation = {};
+        await axios
+          .post(`${api}/accommodations/edit/${this.$route.params.id}`, this.accommodation)
+          .then(() => {
+            this.$router.push("/dashboard");
+          });
         this.message = "Sent Successfully";
       } catch {
         this.message = "Unsuccessful! Please, Try Again.";
@@ -81,3 +87,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+label {
+  width: 100%;
+  font-size: 10pt;
+  color: red;
+}
+</style>
