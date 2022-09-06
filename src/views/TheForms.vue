@@ -1,7 +1,7 @@
 <script setup>
-import EmployeeForm from './EmployeeForm.vue';
-import ActivityForm from './ActivityForm.vue';
-import AccommodationForm from './AccommodationForm.vue';
+import EmployeeForm from '../components/AdminPanel/EmployeeForm.vue';
+import ActivityForm from '../components/AdminPanel/ActivityForm.vue';
+import AccommodationForm from '../components/AdminPanel/AccommodationForm.vue';
 </script>
 
 <template>
@@ -63,14 +63,6 @@ import AccommodationForm from './AccommodationForm.vue';
       aria-labelledby="pills-employees-tab"
     >
       <EmployeeForm />
-    </div>
-    <div
-      class="tab-pane fade"
-      id="pills-guests"
-      role="tabpanel"
-      aria-labelledby="pills-guests-tab"
-    >
-      <EditBooking />
     </div>
     <div
       class="tab-pane fade"

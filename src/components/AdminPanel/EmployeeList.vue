@@ -1,24 +1,19 @@
 <template>
-  <div style="font-size: 12pt"><br />
-    <table>
-      <!-- Head -->
+  <br />
+  <div>
+    <table
+      class="table table-info"
+      v-for="employee in employeeList"
+      :key="employee._id"
+    >
       <tr>
-        <th>File</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>{{ employeeCount }} employees</th>
-      </tr>
-      <!-- Body -->
-      <tr v-for="employee in employeeList" :key="employee._id">
-        <td>
+        <th>
           <img
             :src="'../../../backend/uploads/' + employee.fileName + '.jpg'"
             alt="employee"
           />
-        </td>
-        <td>{{ employee.fileName }}</td>
-        <td>{{ employee.role }}</td>
-        <td style="text-align: center">
+        </th>
+        <td>
           <!-- EDIT RECORD -->
           <RouterLink
             :to="{ name: 'edit-profile', params: { id: employee._id } }"
@@ -38,12 +33,16 @@
               type="submit"
               class="btn-outline-danger"
               value="delete"
-            />
-          </RouterLink>
+            /> </RouterLink
+          ><br />
+          <p>
+            {{ employee.fileName }}<br />{{ employee.role }}<br />{{
+              employee.description
+            }}
+          </p>
         </td>
       </tr>
     </table>
-    <!-- <em>{{ message }}</em> -->
   </div>
 </template>
 
@@ -72,21 +71,16 @@ img {
   width: 100%;
 }
 
-table {
-  margin: 0 auto;
-  border: 1px solid;
-}
-
 th {
-  background-color: #068d68;
-  border: 1px solid #068d68;
-  color: white;
-  font-weight: lighter;
-  text-align: center;
+  width: 20%;
 }
 
 td {
-  width: 1%;
-  border: 1px solid #068d68;
+  width: 80%;
+}
+
+p {
+  margin-left: 4px;
+  font-size: 12pt;
 }
 </style>

@@ -1,28 +1,23 @@
 <template>
-  <div style="font-size: 12pt"><br />
-    <table>
-      <!-- Head -->
+  <br />
+  <div>
+    <table
+      class="table table-info"
+      v-for="accommodation in accommodationList"
+      :key="accommodation._id"
+    >
       <tr>
-        <th>File</th>
-        <th>Name</th>
-        <th>Fee</th>
-        <th>Description</th>
-        <th>{{ accommodationCount }} accommodations</th>
-      </tr>
-      <!-- Body -->
-      <tr v-for="accommodation in accommodationList" :key="accommodation._id">
-        <td>
+        <th>
           <img
             :src="'../../../backend/uploads/' + accommodation.fileName + '.jpg'"
             alt="accommodation"
           />
-        </td>
-        <td>{{ accommodation.fileName }}</td>
-        <td>{{ accommodation.fee }}</td>
-        <td>{{ accommodation.description }}</td>
-        <td style="text-align: center">
+        </th>
+        <td>
           <!-- EDIT RECORD -->
-          <RouterLink :to="{ name: 'accommodation', params: { id: accommodation._id } }">
+          <RouterLink
+            :to="{ name: 'accommodation', params: { id: accommodation._id } }"
+          >
             <input
               style="border: none"
               type="button"
@@ -32,21 +27,22 @@
           </RouterLink>
 
           <!-- DELETE RECORD -->
-          <RouterLink
-            to=""
-            @click.prevent="removeAccommodation(accommodation._id)"
-          >
+          <RouterLink to="" @click.prevent="removeAccommodation(accommodation._id)">
             <input
               style="border: none"
               type="submit"
               class="btn-outline-danger"
               value="delete"
-            />
-          </RouterLink>
+            /> </RouterLink
+          ><br />
+          <p>
+            {{ accommodation.fileName }}<br />{{ accommodation.fee}}<br />{{
+              accommodation.description
+            }}
+          </p>
         </td>
       </tr>
     </table>
-    <em>{{ message }}</em>
   </div>
 </template>
 
@@ -77,25 +73,20 @@ export default {
 </script>
 
 <style scoped>
-img {
-  width: 100%;
-}
-
-table {
-  margin: 0 auto;
-  border: 1px solid;
-}
-
-th {
-  background-color: #068d68;
-  border: 1px solid #068d68;
-  color: white;
-  font-weight: lighter;
-  text-align: center;
-}
-
-td {
-  width: 1%;
-  border: 1px solid #068d68;
-}
-</style>
+  img {
+    width: 100%;
+  }
+  
+  th {
+    width: 20%;
+  }
+  
+  td {
+    width: 80%;
+  }
+  
+  p {
+    margin-left: 4px;
+    font-size: 12pt;
+  }
+  </style>

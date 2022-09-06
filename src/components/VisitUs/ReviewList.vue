@@ -18,7 +18,6 @@
         <th>{{ review.comment }}</th>
       </tr>
     </table>
-    <!-- <em>{{ message }}</em> -->
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="addReview()">
+    <form @submit.prevent="newReview()">
       <div class="form-group">
         <input
           type="text"
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     // Actions
-    async addReview() {
+    async newReview() {
       try {
         await axios.post(`${api}/reviews/new`, this.review);
         this.review = {};

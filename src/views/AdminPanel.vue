@@ -1,8 +1,8 @@
 <script setup>
-import EmployeeList from "../components/AboutUs/EmployeeList.vue";
-import GuestList from "../components/VisitUs/GuestList.vue";
-import ActivityList from "../components/VisitUs/ActivityList.vue";
-import AccommodationList from "../components/VisitUs/AccommodationList.vue";
+import EmployeeList from "../components/AdminPanel/EmployeeList.vue";
+import GuestList from "../components/AdminPanel/GuestList.vue";
+import ActivityList from "../components/AdminPanel/ActivityList.vue";
+import AccommodationList from "../components/AdminPanel/AccommodationList.vue";
 </script>
 
 <template>
@@ -70,9 +70,16 @@ import AccommodationList from "../components/VisitUs/AccommodationList.vue";
         </button>
       </li>
     </ul>
-    <RouterLink style="margin-left: 10px" to="/forms"
+    <RouterLink style="margin-left: 10px" to="/forms/new"
       ><input type="button" value="new"
     /></RouterLink>
+    <!-- Logout -->
+    <div id="greetings-container">
+      <span id="greeting" class="hero-text-lg">Good {{ setGreeting }},</span>
+      <span id="admin-name" class="hero-text-lg">{{ claims.name }}</span>
+      <p class="sub-text">Here is what's happening at Clarke farm today.</p>
+    </div>
+    <span class="item-title" @click="logout()"> Logout </span>
     <div class="tab-content" id="pills-tabContent">
       <div
         class="tab-pane fade show active"
@@ -109,3 +116,48 @@ import AccommodationList from "../components/VisitUs/AccommodationList.vue";
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      hours: new Date().getHours(),
+      claims: "",
+      authenticated: false,
+    };
+  },
+  async created() {
+    await this.isAuthenticated();
+    this.$auth.authStateManager.subscribe(this.isAuthenticated);
+    // OKTA CLAIMS
+    this.setup();
+  },
+  watch: {
+    // Everytime the route changes, check for auth status
+    $route: "isAuthenticated",
+  },
+  methods: {
+    // OKTA CLAIMS
+    async setup() {
+      this.claims = await this.$auth.getUser();
+    },
+    async isAuthenticated() {
+      this.authenticated = await this.$auth.isAuthenticated();
+    },
+    async logout() {
+      await this.$auth.signOut();
+    },
+  },
+  computed: {
+    setGreeting() {
+      if (this.hours >= 0 && this.hours < 12) {
+        return "morning";
+      }
+      if (this.hours >= 12 && this.hours < 17) {
+        return "afternoon";
+      }
+      return "evening";
+    },
+  },
+};
+</script>

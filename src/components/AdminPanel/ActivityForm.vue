@@ -5,7 +5,7 @@
       <div class="col-sm"></div>
       <!-- Column Two -->
       <div class="col-sm">
-        <form @submit.prevent="newActivity" enctype="multipart/form-data">
+        <form @submit.prevent="newActivity()" enctype="multipart/form-data">
           <input type="file" ref="file" @change="onSelect" />
           <br /><br />
           <div class="form-group">

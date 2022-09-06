@@ -12,7 +12,7 @@ import TheOffers from "./TheOffers.vue";
       <br /><br /><br />
       <div style="background-color: rgba(0, 0, 0, 0.05)">
         <h6>Book Your Visit Now</h6>
-        <form @submit.prevent="addGuest()">
+        <form @submit.prevent="newGuest()">
           <div>
             <input
               type="text"
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     // Actions
-    async addGuest() {
+    async newGuest() {
       try {
         await axios.post(`${api}/guests/new`, this.guest);
         this.guest = {};
