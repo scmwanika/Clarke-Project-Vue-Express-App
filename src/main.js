@@ -15,7 +15,6 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 const app = createApp(App);
 
-//app.use(Carousel3d);
 app.use(createPinia());
 app.use(router);
 app.use(OktaVue, {

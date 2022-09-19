@@ -14,7 +14,7 @@ import AdminPanel from "@/views/AdminPanel.vue";
 import TheForms from "@/views/TheForms.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),//import.meta.env.BASE_URL
   routes: [
     {
       path: "/",
@@ -40,21 +40,33 @@ const router = createRouter({
       path: "/employees/edit/:id",
       name: "edit-profile",
       component: EditEmployee,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: "/bookings/edit/:id",
       name: "booking",
       component: EditBooking,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: "/activities/edit/:id",
       name: "activity",
       component: EditActivity,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: "/accommodations/edit/:id",
       name: "accommodation",
       component: EditAccommodation,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: "/reviews",
@@ -75,14 +87,17 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: AdminPanel,
-      meta: {
-        requiresAuth: true,
-      },
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: "/forms/new",
       name: "forms",
       component: TheForms,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
   ],
 });

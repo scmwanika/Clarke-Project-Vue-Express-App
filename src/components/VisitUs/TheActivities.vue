@@ -4,14 +4,14 @@
     <div class="headline">
       <div>
         <p style="font-size: 35pt">90% of our guests</p>
-        <p>Enjoyed These Activities The Most.</p>
+        <p style="font-size: 14pt">Enjoyed These Activities The Most.</p>
       </div>
     </div>
     <div class="activity">
       <div v-for="activity in activityList" :key="activity.id">
         <div>
           <img
-            :src="('../../../backend/uploads/' + activity.fileName + '.jpg')"
+            :src="'../../../backend/uploads/' + activity.fileName + '.jpg'"
             alt="card image"
           />
           <p style="font-size: 12pt">{{ activity.description }}</p>
@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import axios from 'axios';
-import api from '../../api';
+import axios from "axios";
+import api from "../../api";
 
 export default {
-  name: 'Popular Activities',
+  name: "Popular Activities",
   data() {
     return {
       activityList: [],

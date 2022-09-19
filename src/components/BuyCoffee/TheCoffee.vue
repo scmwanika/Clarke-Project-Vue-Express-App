@@ -152,8 +152,10 @@ h4 {
 }
 
 p {
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 14pt;
+  text-align: justify;
 }
 
 .coffee-process-left,

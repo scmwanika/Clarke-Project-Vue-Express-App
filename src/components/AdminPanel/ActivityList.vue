@@ -1,21 +1,26 @@
 <template>
   <br />
   <div>
-    <table
-      class="table table-info"
-      v-for="activity in activityList"
-      :key="activity._id"
-    >
-      <tr>
-        <th>
+    <div class="card-data">
+      <div
+        v-for="activity in activityList"
+        :key="activity._id"
+        class="activity-data"
+      >
+        <div class="card">
           <img
             :src="'../../../backend/uploads/' + activity.fileName + '.jpg'"
             alt="activity"
           />
-        </th>
-        <td>
-          <!-- EDIT RECORD -->
-          <RouterLink
+          <div class="card-body">
+            <p>
+              {{ activity.fileName }}<br />{{ activity.fee }}
+              {{ activity.description }}
+            </p>
+            <!-- CONTROLS -->
+            <p>
+              <!-- EDIT RECORD -->
+              <RouterLink
             :to="{ name: 'activity', params: { id: activity._id } }"
           >
             <input
@@ -34,15 +39,12 @@
               class="btn-outline-danger"
               value="delete"
             /> </RouterLink
-          ><br />
-          <p>
-            {{ activity.fileName }}<br />{{ activity.fee }}<br />{{
-              activity.description
-            }}
-          </p>
-        </td>
-      </tr>
-    </table>
+          >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -65,22 +67,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-  img {
-    width: 100%;
-  }
-  
-  th {
-    width: 20%;
-  }
-  
-  td {
-    width: 80%;
-  }
-  
-  p {
-    margin-left: 4px;
-    font-size: 12pt;
-  }
-  </style>

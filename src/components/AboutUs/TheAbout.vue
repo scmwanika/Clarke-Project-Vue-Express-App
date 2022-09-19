@@ -26,10 +26,18 @@
         </h6>
       </div>
       <div class="about-investment-middle">
-        <img src="../../../backend/uploads/river-walk.jpg" alt="river walk" width="100%" />
+        <img
+          src="../../../backend/uploads/river-walk.jpg"
+          alt="river walk"
+          width="100%"
+        />
       </div>
       <div class="about-investment-right">
-        <img src="../../../backend/uploads/forest-walk.jpg" alt="forest walk" width="100%" />
+        <img
+          src="../../../backend/uploads/forest-walk.jpg"
+          alt="forest walk"
+          width="100%"
+        />
       </div>
     </div>
     <br />
@@ -78,3 +86,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+p {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  font-size: 14pt;
+  text-align: justify;
+}
+</style>

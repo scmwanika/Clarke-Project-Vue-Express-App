@@ -70,16 +70,18 @@ import AccommodationList from "../components/AdminPanel/AccommodationList.vue";
         </button>
       </li>
     </ul>
-    <RouterLink style="margin-left: 10px" to="/forms/new"
-      ><input type="button" value="new"
-    /></RouterLink>
-    <!-- Logout -->
     <div id="greetings-container">
-      <span id="greeting" class="hero-text-lg">Good {{ setGreeting }},</span>
-      <span id="admin-name" class="hero-text-lg">{{ claims.name }}</span>
-      <p class="sub-text">Here is what's happening at Clarke farm today.</p>
+      <p>
+        Good {{ setGreeting }} {{ claims.name }}<br /><RouterLink
+          style="margin-left: 10px"
+          to="/forms/new"
+          ><input type="button" class="btn btn-outline-info" value="add record"
+        /></RouterLink>
+        <!-- Logout -->
+        <button class="btn btn-danger" @click="logout()">Logout</button>
+      </p>
     </div>
-    <span class="item-title" @click="logout()"> Logout </span>
+
     <div class="tab-content" id="pills-tabContent">
       <div
         class="tab-pane fade show active"
@@ -126,6 +128,17 @@ export default {
       authenticated: false,
     };
   },
+  computed: {
+    setGreeting() {
+      if (this.hours >= 0 && this.hours < 12) {
+        return "Morning";
+      }
+      if (this.hours >= 12 && this.hours < 17) {
+        return "Afternoon";
+      }
+      return "Evening";
+    },
+  },
   async created() {
     await this.isAuthenticated();
     this.$auth.authStateManager.subscribe(this.isAuthenticated);
@@ -146,17 +159,6 @@ export default {
     },
     async logout() {
       await this.$auth.signOut();
-    },
-  },
-  computed: {
-    setGreeting() {
-      if (this.hours >= 0 && this.hours < 12) {
-        return "morning";
-      }
-      if (this.hours >= 12 && this.hours < 17) {
-        return "afternoon";
-      }
-      return "evening";
     },
   },
 };

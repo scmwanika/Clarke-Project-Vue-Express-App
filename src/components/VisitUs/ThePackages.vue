@@ -1,7 +1,7 @@
 <template>
   <!-- Packages -->
   <div class="our-packages">
-    <p>
+    <p style="font-size: 12pt;">
         We have arrangements for
         corporate events, tourists looking for adventure, and individuals
         looking to training programs in best agricultural practices.

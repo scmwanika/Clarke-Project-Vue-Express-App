@@ -21,7 +21,7 @@
                 <RouterLink :to="{ name: 'show-profile', params: { id: employee._id } }">
                   <input
                     type="button"
-                    class="btn btn-info"
+                    class="btn btn-outline-info"
                     value="Show Profile"
                   />
                 </RouterLink>
@@ -60,17 +60,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.card-data {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  column-gap: 20px;
-  row-gap: 20px;
-}
-
-p {
-  font-size: 10pt;
-  text-align: center;
-}
-</style>

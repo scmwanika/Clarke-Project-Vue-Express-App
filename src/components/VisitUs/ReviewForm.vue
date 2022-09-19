@@ -13,7 +13,6 @@
 
       <div class="form-group">
         <select class="form-control" v-model="review.rating" required>
-          <option value="">select farm experience...</option>
           <option value="☆☆☆☆☆">Excellent</option>
           <option value="☆☆☆☆">Very Good</option>
           <option value="☆☆☆">Good</option>
@@ -42,9 +41,15 @@
         />
       </div>
 
-      <input type="submit" class="btn btn-success btn-block" value="Submit A Review About Your Visit To The Farm."/>
+      <input
+        type="submit"
+        class="btn btn-success btn-block"
+        value="Submit A Review About Your Visit To The Farm."
+      />
     </form>
-    <p><em>{{ message }}</em></p>
+    <p>
+      <em>{{ message }}</em>
+    </p>
   </div>
 </template>
 

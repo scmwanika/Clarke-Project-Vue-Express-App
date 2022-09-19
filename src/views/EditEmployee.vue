@@ -10,7 +10,7 @@
       <div class="flex-item-right">
         <br />
         <h5>Employee Profile</h5>
-        <form @submit.prevent="updateEmployee">
+        <form @submit.prevent="updateEmployee()">
           <br />
           <div class="form-group">
             <input
